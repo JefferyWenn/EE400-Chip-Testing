@@ -1,0 +1,95 @@
+# List of all Verilog source files to include in this build.
+# Used by both synthesis and RTL simulation.
+synthesis.inputs.input_files: [
+  # ----------------------------------------------------------------------
+  # BaseJump STL subset needed by bsg_link_ddr_upstream / downstream.
+  # ${bsg_root} is set by module_top.mk's $(OBJ_DIR)/paths.yml from the
+  # Makefile's BASEJUMP_STL_PATH variable (default: third_party/basejump_stl).
+  # Run `make setup-bsg` once to populate that path.
+  # ----------------------------------------------------------------------
+  "${bsg_root}/bsg_misc/bsg_defines.v",
+  "${bsg_root}/bsg_misc/bsg_dff.v",
+  "${bsg_root}/bsg_misc/bsg_dff_en.v",
+  "${bsg_root}/bsg_misc/bsg_counter_clear_up.v",
+  "${bsg_root}/bsg_misc/bsg_circular_ptr.v",
+  "${bsg_root}/bsg_misc/bsg_scan.v",
+  "${bsg_root}/bsg_misc/bsg_gray_to_binary.v",
+
+  "${bsg_root}/bsg_async/bsg_async_ptr_gray.v",
+  "${bsg_root}/bsg_async/bsg_async_credit_counter.v",
+  "${bsg_root}/bsg_async/bsg_async_fifo.v",
+  "${bsg_root}/bsg_async/bsg_launch_sync_sync.v",
+  "${bsg_root}/bsg_async/bsg_sync_sync.v",
+
+  "${bsg_root}/bsg_dataflow/bsg_fifo_tracker.v",
+  "${bsg_root}/bsg_dataflow/bsg_one_fifo.v",
+  "${bsg_root}/bsg_dataflow/bsg_two_fifo.v",
+  "${bsg_root}/bsg_dataflow/bsg_fifo_1r1w_small_unhardened.v",
+  "${bsg_root}/bsg_dataflow/bsg_fifo_1r1w_small.v",
+  "${bsg_root}/bsg_dataflow/bsg_parallel_in_serial_out.v",
+  "${bsg_root}/bsg_dataflow/bsg_serial_in_parallel_out.v",
+  "${bsg_root}/bsg_dataflow/bsg_serial_in_parallel_out_full.v",
+  "${bsg_root}/bsg_dataflow/bsg_round_robin_1_to_n.v",
+
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w_synth.v",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w.v",
+
+  "${bsg_root}/bsg_link/bsg_link_ddr_downstream.v",
+  "${bsg_root}/bsg_link/bsg_link_ddr_upstream.v",
+  "${bsg_root}/bsg_link/bsg_link_iddr_phy.v",
+  "${bsg_root}/bsg_link/bsg_link_oddr_phy.v",
+  "${bsg_root}/bsg_link/bsg_link_source_sync_downstream.v",
+  "${bsg_root}/bsg_link/bsg_link_source_sync_upstream.v",
+  "${bsg_root}/bsg_link/bsg_link_source_sync_upstream_sync.v",
+
+  "${bsg_root}/bsg_tag/bsg_tag_pkg.v",
+  "${bsg_root}/bsg_tag/bsg_tag_master.v",
+
+
+  # ----------------------------------------------------------------------
+  # Project RTL: BLE waveform generator + SPI slave + bsg_link wrapper +
+  # top.v (student-editable SoC) + chip_top.sv (pad ring + bsg + scan).
+  # chip_top.sv must be last so its `chip_top` module is the synthesis top.
+  # ----------------------------------------------------------------------
+  "zeroscatter/design/tactile-ctrl-chip/v/sensor_interface/i2c_init.v", 
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/instr_ram.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/data_ram.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/sensor_interface/adc_8bit_buf.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/dla_link/cnn_result_buf.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/dla_link/bsg_link_upstream_ctl.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/sensor_interface/mux_ctrl.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/sensor_interface/scan_ctrl.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/uart/pkt_framer.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/sensor_interface/spi_master.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/uart/uart_peripheral.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/uart/uart_tx.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/uart/firmware_loader.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_aligner.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_alu.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_bufreg.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_bufreg2.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_compdec.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_csr.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_ctrl.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_debug.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_decode.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_immdec.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_mem_if.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_rf_if.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_rf_ram.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_rf_ram_if.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_rf_top.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_state.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/cpu/serv_rf_top/serv_top.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/top/ctrl_top.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/top/bsg_link_wrapper.sv",
+#  "zeroscatter/design/tactile-ctrl-chip/v/top/top.v",
+  "zeroscatter/design/tactile-ctrl-chip/v/top/chip_top.sv",
+
+]
+synthesis.inputs.input_files_meta: [append, subst]
+
+# Add synthesis input files to simulation inputs (only for RTL sim).
+sim.inputs.input_files: synthesis.inputs.input_files
+sim.inputs.input_files_meta: [crossref, subst]
+sim.inputs.options: [+notimingchecks]

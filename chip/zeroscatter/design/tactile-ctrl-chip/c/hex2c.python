@@ -1,0 +1,41 @@
+# hex_to_header.py
+#
+# Converts:
+#   firmware.hex
+#
+# into:
+#   firmware_data.h
+
+HEX_FILE = "firmware.hex"
+OUT_FILE = "firmware_data.h"
+
+words = []
+
+with open(HEX_FILE, "r") as f:
+    for line in f:
+        line = line.strip()
+
+        if line == "":
+            continue
+
+        words.append(int(line, 16))
+
+with open(OUT_FILE, "w") as f:
+    f.write("#ifndef FIRMWARE_DATA_H\n")
+    f.write("#define FIRMWARE_DATA_H\n\n")
+
+    f.write("#include <stdint.h>\n")
+    f.write("#include <avr/pgmspace.h>\n\n")
+
+    f.write(f"const uint16_t FIRMWARE_WORD_COUNT = {len(words)};\n\n")
+
+    f.write("const uint32_t firmware_words[] PROGMEM = {\n")
+
+    for i, w in enumerate(words):
+        comma = "," if i != len(words) - 1 else ""
+        f.write(f"    0x{w:08X}UL{comma}\n")
+
+    f.write("};\n\n")
+    f.write("#endif\n")
+
+print(f"Generated {OUT_FILE}")

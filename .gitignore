@@ -1,0 +1,43 @@
+# Foundry-derived / large binaries: kept locally, never committed
+artifacts/
+*.gds
+*.gds.gz
+*.oas
+*.fsdb
+*.sdf
+*.spef
+
+# TSMC technology plugin and lab-provided Mentor plugins (from lab-private paths)
+ee478-hammer/hammer/src/hammer-vlsi/technology/tsmc180/
+ee478-hammer/hammer-mentor-plugins/
+
+# Hammer / tool run outputs
+chip/build/
+chip/build_no_dft/
+chip/output.json
+chip/hammer.log
+*_run.log
+!reports/*_run.log
+.cadence/
+verdiLog/
+novas.*
+ucli.key
+simv*
+csrc/
+*.vpd
+*.vcd
+
+# Firmware build outputs
+*.elf
+*.o
+
+# Editor / OS
+*.bak
+*.swp
+*~
+__pycache__/
+*.pyc
+.DS_Store
+
+# Scan-cell UDP models adapted from the TSMC library (needed only for ATPG; keep local)
+chip/cfg/tsmc180_scan.v

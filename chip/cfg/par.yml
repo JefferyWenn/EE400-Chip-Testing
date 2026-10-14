@@ -1,0 +1,16 @@
+# PAR-specific configuration
+par:
+  inputs:
+    # Antenna diode insertion
+    antenna_diode_libs:
+      - "DIODE0"
+      - "DIODE1"
+      - "DIODE2"
+    
+    antenna_diode_side_ratio: 20
+    antenna_diode_area_ratio: 100
+    antenna_insert_diodes: true
+  
+  hooks:
+    par_post_route_opt:
+      - "antenna_fix"

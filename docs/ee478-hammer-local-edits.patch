@@ -1,0 +1,86 @@
+diff --git a/hammer-bsg-plugins/vcs-mk/generate_sim_cmd.py b/hammer-bsg-plugins/vcs-mk/generate_sim_cmd.py
+index 3f02c0a..6ac5e53 100755
+--- a/hammer-bsg-plugins/vcs-mk/generate_sim_cmd.py
++++ b/hammer-bsg-plugins/vcs-mk/generate_sim_cmd.py
+@@ -59,7 +59,11 @@ def main ():
+         # VCS binary ###
+         flags += [f"{os.path.join(env['synopsys.synopsys_home'],'vcs',env['sim.vcs.version'])}/bin/vcs"]
+         ### Common flags ###
+-        flags += ["-full64", "-override_timescale=1ps/1ps", "-sverilog", f"-Mdir={args.dir}", f"-o {os.path.join(args.dir, 'simv')}"]
++        # -v2k_generate: allow cross-module references through unnamed generate
++        # blocks in third-party BSG STL Verilog files (bsg_link_ddr_upstream/
++        # downstream etc). Without this, VCS raises XMRE errors on all
++        # hierarchical references in the testbench when unnamed generates exist.
++        flags += ["-full64", "-override_timescale=1ps/1ps", "-sverilog", "-v2k_generate", f"-Mdir={args.dir}", f"-o {os.path.join(args.dir, 'simv')}"]
+         ### Debug + waveform ###
+         flags += ["-debug_access+all", "-kdb"]
+         ### Design input ###
+@@ -79,7 +83,9 @@ def main ():
+             flags += ["+define+" + i for i in cfg["sim.inputs.tb_defines"]]
+         ### RTL SPECIFIC FLAGS ###
+         if args.type == "rtl":
+-            pass
++            # RTL_SIM guards internal hierarchical references in chip_top_tb.sv
++            # that don't exist in gate-level netlists (syn/par).
++            flags += ["+define+RTL_SIM"]
+         ### RTL HARD SPECIFIC FLAGS ###
+         elif args.type == "rtl-hard":
+             # flags += ["build/tech-sky130-cache/primitives.v", "build/tech-sky130-cache/sky130_fd_sc_hd.v"]
+@@ -106,7 +112,7 @@ def main ():
+                 expanded_hier = get_expanded_verilog_hierarchy_modules(cfg["sim.inputs.input_files"][0])
+                 with open(os.path.join(args.dir, "bsg_cdc_paths.list"), "w") as f:
+                     for inst,path in  expanded_hier:
+-                        if "bsg_SYNC_1_r_reg" in path or "bsg_SYNC_1_r_reg" in path:
++                        if "bsg_SYNC_1_r_reg" in path or "rx_sync_reg" in path:
+                             cdc_path = dut_path + "." + path
+                             print("instance { %s } { noTiming };" % cdc_path, file=f)
+                 flags += [f"+optconfigfile+{os.path.join(args.dir, 'bsg_cdc_paths.list')}"]
+@@ -130,7 +136,7 @@ def main ():
+                 expanded_hier = get_expanded_verilog_hierarchy_modules(cfg["sim.inputs.input_files"][0])
+                 with open(os.path.join(args.dir, "bsg_cdc_paths.list"), "w") as f:
+                     for inst,path in  expanded_hier:
+-                        if "bsg_SYNC_1_r_reg" in path or "bsg_SYNC_1_r_reg" in path:
++                        if "bsg_SYNC_1_r_reg" in path or "rx_sync_reg" in path:
+                             cdc_path = dut_path + "." + path
+                             print("instance { %s } { noTiming };" % cdc_path, file=f)
+                 flags += [f"+optconfigfile+{os.path.join(args.dir, 'bsg_cdc_paths.list')}"]
+diff --git a/hammer-cadence-plugins/formal/conformal/__init__.py b/hammer-cadence-plugins/formal/conformal/__init__.py
+index 7e53c2b..fc9c155 100755
+--- a/hammer-cadence-plugins/formal/conformal/__init__.py
++++ b/hammer-cadence-plugins/formal/conformal/__init__.py
+@@ -240,6 +240,13 @@ class Conformal(HammerFormalTool, CadenceTool):
+             append(f'add_pin_constraints 0 {{{pin}}} -golden')
+             append(f'add_pin_constraints 0 {{{pin}}} -revised')
+ 
++        # Ignore DFT-only outputs (e.g. scan_out) that exist solely after scan
++        # insertion: they are undriven in RTL but driven by the Genus-stitched
++        # scan chain in the netlist, so LEC can never map them. Functionally
++        # inert (scan correctness is verified by ATPG), so waiving is safe.
++        for pin in self.get_setting("formal.inputs.ignored_outputs", nullvalue=[]):
++            append(f'add_ignored_outputs {{{pin}}} -both')
++
+         if self.get_setting("formal.conformal.license") == "L":
+             append("report_black_box")
+             append("set_system_mode lec")
+diff --git a/hammer-cadence-plugins/par/innovus/__init__.py b/hammer-cadence-plugins/par/innovus/__init__.py
+index 70d30b9..476a402 100755
+--- a/hammer-cadence-plugins/par/innovus/__init__.py
++++ b/hammer-cadence-plugins/par/innovus/__init__.py
+@@ -158,6 +158,17 @@ class Innovus(HammerPlaceAndRouteTool, CadenceTool):
+     def env_vars(self) -> Dict[str, str]:
+         v = dict(super().env_vars)
+         v["INNOVUS_BIN"] = self.get_setting("par.innovus.innovus_bin")
++        # Innovus's Critical Region Resynthesis (place_opt / route_opt) shells
++        # out to `genus` by name. If it isn't on PATH, Innovus prints
++        # "IMPOPT: Genus executable not found in PATH" and disables CRR, which
++        # degrades timing/QoR. Put the Genus bin dir (same install synthesis
++        # uses) on PATH so CRR runs. Derived from cadence.cadence_home +
++        # synthesis.genus.version, identical to the genus plugin's genus_bin.
++        genus_dir = os.path.join(
++            self.get_setting("cadence.cadence_home"),
++            "GENUS", "GENUS{}".format(self.get_setting("synthesis.genus.version")),
++            "bin")
++        v["PATH"] = genus_dir + os.pathsep + os.environ.get("PATH", "")
+         return v
+ 
+     @property
