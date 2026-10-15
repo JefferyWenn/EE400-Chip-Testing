@@ -1,6 +1,7 @@
 # Search directories for `include directives in simulations
 sim.inputs.tb_incdir: [
-  "${bsg_root}/bsg_misc"
+  "${bsg_root}/bsg_misc",
+  "${bsg_root}/bsg_tag"
 ]
 sim.inputs.tb_incdir_meta: [subst]
 

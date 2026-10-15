@@ -238,6 +238,14 @@ $(LVS_INCLUDE_SP):
 open-signoff:
 	$(MAKE) -C ./klayout open-signoff-logo
 
+# Open the taped-out Innovus database (final PAR, Jun 6) in the Innovus GUI.
+# Same view as `make open-chip`, but reads the saved copy in artifacts/ instead
+# of build/par-rundir, so it works without rerunning PAR.
+INNOVUS_FINAL := $(realpath ../artifacts/innovus)
+open-chip-final:
+	mkdir -p $(INNOVUS_FINAL)/run && cd $(INNOVUS_FINAL)/run && \
+	. ../enter && $$INNOVUS_BIN -common_ui -win -files ../open_chip.tcl
+
 clean:
 	$(MAKE) -C ./sealring clean
 	$(MAKE) -C ./arrow clean

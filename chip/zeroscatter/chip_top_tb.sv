@@ -49,7 +49,7 @@ module chip_top_tb;
     // be overridden by +FWDIR=/abs/path/ so the same simv runs on a grader's
     // machine without rebuilding. Keep the trailing slash on any override.
     localparam string FW_DIR_DEFAULT =
-        "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/zeroscatter/";
+        "/home/jwen68/Projects/EE400-Chip-Testing/chip/zeroscatter/";
     string fw_dir;
     string fw_hex_path;
 
@@ -379,7 +379,8 @@ module chip_top_tb;
     logic   serv_started;
 
     initial begin
-        $dumpfile("chip_top_tb.vcd"); $dumpvars(0, chip_top_tb);
+        // VCD dump disabled: full-design VCD is ~7 GB per run; waveform.fsdb below is used instead.
+        // $dumpfile("chip_top_tb.vcd"); $dumpvars(0, chip_top_tb);
         $fsdbDumpfile("waveform.fsdb"); $fsdbDumpvars(0, chip_top_tb); $fsdbDumpMDA();
 
         errors=0; serv_started=0;

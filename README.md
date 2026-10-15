@@ -22,6 +22,8 @@ ee478-hammer/             Hammer flow (pncel/ee478-hammer @ c89d94a + local edit
 docs/                     final report draft, PCB jumper/pinout notes,
                           ee478-hammer-local-edits.patch
 reports/                  final syn/PAR area, timing, power reports; sim-syn/sim-par logs
+file/                     EE400 reports (e.g. Oct 2026 "Memory Revival Sims & Layout")
+screenshots/              dated layout / simulation screenshots used in reports
 artifacts/   (git-ignored, local only)
   gds/                    chip_top.gds (PAR, Jun 6), chip_top_signoff_logo.gds
   netlist/                chip_top.{mapped,sim,lvs}.v, chip_top.{mapped,par}.sdf
@@ -40,10 +42,13 @@ copied by hand if you move to another lab machine:
 ## Common commands (from `chip/`)
 
 ```
-make -C klayout open-presignoff        # view final PAR layout
+make open-chip-final                   # open taped-out Innovus database (artifacts/innovus)
+make -C klayout open-presignoff        # view final PAR GDS in KLayout
 make -C klayout open-signoff-logo      # view signoff GDS (seal ring, fill, logo)
-verdi -ssf ../artifacts/sim/novas.fsdb # open the old post-layout waveform
-make sim-rtl                           # build RTL simv, then: make sim-uart / sim-dma-e2e / sim-full
+make sim-rtl                           # build + run RTL sim (default firmware; ~1 min, TEST_PASS)
+make sim-dma-e2e                       # then other tests reuse simv: sim-uart / sim-full / ...
+make view-sim-rtl                      # open waveform.fsdb in Verdi (sets license + VERDI_HOME)
+                                       # in nWave: File > Restore Signal > sim_overview.rc
 make syn | par | sim-syn | sim-par     # full flow (long — run on the lab machine)
 ```
 
