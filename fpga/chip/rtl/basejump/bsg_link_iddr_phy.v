@@ -27,6 +27,7 @@ module bsg_link_iddr_phy
   ,input  [width_p-1:0]   data_i
   ,output [2*width_p-1:0] data_r_o
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   logic [2*width_p-1:0] data_rr;
   logic [width_p-1:0] data_n_r, data_p_r;
@@ -46,5 +47,6 @@ module bsg_link_iddr_phy
     // data_p_r occurs logically earlier in time than data_n_r
     data_rr <= {data_n_r, data_p_r};
 
+endgenerate
 endmodule
 `BSG_ABSTRACT_MODULE(bsg_link_iddr_phy)

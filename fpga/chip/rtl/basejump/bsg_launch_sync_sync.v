@@ -228,6 +228,7 @@ module bsg_launch_sync_sync #(parameter `BSG_INV_PARAM(width_p)
     , output [width_p-1:0] iclk_data_o // after launch flop
     , output [width_p-1:0] oclk_data_o // after sync flops
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
 // synopsys translate_off
 
@@ -347,6 +348,7 @@ module bsg_launch_sync_sync #(parameter `BSG_INV_PARAM(width_p)
 
    end
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_launch_sync_sync)

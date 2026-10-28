@@ -66,6 +66,7 @@ module bsg_link_oddr_phy
   ,output logic [width_p-1:0] data_r_o
   ,output logic               clk_r_o
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   logic odd_r, clk_r, reset_i_r;  
   logic [1:0][width_p-1:0] data_i_r;
@@ -114,6 +115,7 @@ module bsg_link_oddr_phy
     else 
         data_r_o <= data_i_r[1];
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_link_oddr_phy)

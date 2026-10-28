@@ -31,6 +31,7 @@ module bsg_serial_in_parallel_out #(parameter `BSG_INV_PARAM(width_p)
 
     , input  [$clog2(out_els_p+1)-1:0]        yumi_cnt_i
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    localparam double_els_lp = els_p * 2;
 
@@ -90,6 +91,7 @@ module bsg_serial_in_parallel_out #(parameter `BSG_INV_PARAM(width_p)
 	  valid_nn = valid_n[yumi_cnt_i+:els_p];
   end
 
+endgenerate
 endmodule
 
 

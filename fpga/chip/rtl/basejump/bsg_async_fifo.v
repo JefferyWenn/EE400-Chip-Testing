@@ -42,6 +42,7 @@ module bsg_async_fifo #(parameter `BSG_INV_PARAM(  lg_size_p )
     , output [width_p-1:0] r_data_o
     , output r_valid_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    localparam size_lp = 1 << lg_size_p;
 
@@ -147,6 +148,7 @@ module bsg_async_fifo #(parameter `BSG_INV_PARAM(  lg_size_p )
 
    // synopsys translate_on
 
+endgenerate
 endmodule // bsg_async_fifo
 
 `BSG_ABSTRACT_MODULE(bsg_async_fifo)

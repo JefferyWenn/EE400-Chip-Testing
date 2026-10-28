@@ -37,6 +37,7 @@ module bsg_parallel_in_serial_out
     ,output            [width_p-1:0] data_o
     ,input                           yumi_i
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
     // Reverse the input data array if send from HI to LO
     logic [els_p-1:0][width_p-1:0] data_li;
@@ -207,6 +208,7 @@ module bsg_parallel_in_serial_out
 
   end
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_parallel_in_serial_out)

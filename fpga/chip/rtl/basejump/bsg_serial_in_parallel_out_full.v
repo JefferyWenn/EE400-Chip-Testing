@@ -34,6 +34,7 @@ module bsg_serial_in_parallel_out_full
   ,output logic                          v_o
   ,input                                 yumi_i
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   localparam lg_els_lp = `BSG_SAFE_CLOG2(els_p);
    
@@ -119,6 +120,7 @@ module bsg_serial_in_parallel_out_full
       end
   end
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_serial_in_parallel_out_full)

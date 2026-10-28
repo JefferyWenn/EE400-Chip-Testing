@@ -76,6 +76,7 @@ module bsg_async_credit_counter #(parameter `BSG_INV_PARAM(max_tokens_p )
     , input r_infinite_credits_i  // basically suppress this module
     , output r_credits_avail_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // $clog2(x) is how many bits are required to represent
    // x unique values. we need to represent 0..max_credits_p = max_credits_p+1 values.
@@ -167,6 +168,7 @@ module bsg_async_credit_counter #(parameter `BSG_INV_PARAM(max_tokens_p )
    //
    // ****************************************
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_async_credit_counter)

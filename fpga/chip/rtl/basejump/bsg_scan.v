@@ -19,6 +19,7 @@ module bsg_scan #(parameter `BSG_INV_PARAM(width_p)
    (input    [width_p-1:0] i
     , output logic [width_p-1:0] o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // derivation of the scan code (xor case):
 
@@ -66,7 +67,9 @@ module bsg_scan #(parameter `BSG_INV_PARAM(width_p)
 
    // streaming operation; reverses bits
    if (lo_to_hi_p)
-     assign t[0] = {<< {i}};
+     for (j = 0; j < width_p; j++) begin : rev_i  // FPGA: was {<< {i}}
+       assign t[0][j] = i[width_p-1-j];
+     end
    else
      assign t[0] = i;
 
@@ -115,7 +118,7 @@ module bsg_scan #(parameter `BSG_INV_PARAM(width_p)
    // reverse bits
    if (lo_to_hi_p)
      //assign o = {<< {t[$clog2(width_p)]}};
-    for (j = 0; j < width_p; j++) begin
+    for (j = 0; j < width_p; j++) begin : rev_o
       assign o[j] = t[$clog2(width_p)][width_p-1-j];
     end
 
@@ -125,6 +128,7 @@ module bsg_scan #(parameter `BSG_INV_PARAM(width_p)
    // always @(o)
    //  $display("bsg_scan (xor_p %b and_p %b  or_p %b) %b = %b",xor_p[0],and_p[0],or_p[0],i,o);
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_scan)

@@ -32,6 +32,7 @@ module bsg_fifo_1r1w_small_unhardened #( parameter `BSG_INV_PARAM(width_p      )
     , output [width_p-1:0] data_o
     , input                yumi_i
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    wire deque = yumi_i;
    wire v_o_tmp;
@@ -110,6 +111,7 @@ module bsg_fifo_1r1w_small_unhardened #( parameter `BSG_INV_PARAM(width_p      )
         $display("%m v_i=%x yumi_i=%x wptr=%b rptr=%b enque=%b full=%d empty=%d ready_o=%d",v_i,yumi_i,wptr_r, rptr_r, enque, full,empty,ready_o);
      end
  */
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_fifo_1r1w_small_unhardened)

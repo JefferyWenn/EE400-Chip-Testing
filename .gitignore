@@ -41,3 +41,10 @@ __pycache__/
 
 # Scan-cell UDP models adapted from the TSMC library (needed only for ATPG; keep local)
 chip/cfg/tsmc180_scan.v
+
+# Quartus build outputs
+fpga/**/db/
+fpga/**/incremental_db/
+fpga/**/output_files/
+fpga/**/*.qws
+fpga/**/greybox_tmp/

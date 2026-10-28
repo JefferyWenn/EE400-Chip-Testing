@@ -46,6 +46,7 @@ module bsg_two_fifo #(parameter `BSG_INV_PARAM(width_p)
     , output[width_p-1:0] data_o  // early
     , input               yumi_i  // late
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    wire deq_i = yumi_i;
    wire enq_i;
@@ -142,6 +143,7 @@ module bsg_two_fifo #(parameter `BSG_INV_PARAM(width_p)
 
    // synopsys translate_on
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_two_fifo)

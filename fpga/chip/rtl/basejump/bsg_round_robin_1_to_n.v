@@ -27,6 +27,7 @@ module bsg_round_robin_1_to_n #(parameter `BSG_INV_PARAM(width_p )
 
     // to downstream
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // If only one output, feed through the signals
    if (num_out_p == 1)
@@ -59,6 +60,7 @@ module bsg_round_robin_1_to_n #(parameter `BSG_INV_PARAM(width_p )
        
      end
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_round_robin_1_to_n)

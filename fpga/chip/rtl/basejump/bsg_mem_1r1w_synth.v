@@ -28,6 +28,7 @@ module bsg_mem_1r1w_synth #(parameter `BSG_INV_PARAM(width_p)
 
   ,output logic [`BSG_SAFE_MINUS(width_p, 1):0] r_data_o
 );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
   wire unused0 = w_reset_i;
   wire unused1 = r_v_i;
@@ -52,6 +53,7 @@ module bsg_mem_1r1w_synth #(parameter `BSG_INV_PARAM(width_p)
     end
   end
    end
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_mem_1r1w_synth)

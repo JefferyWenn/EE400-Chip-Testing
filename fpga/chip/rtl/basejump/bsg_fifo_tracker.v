@@ -21,6 +21,7 @@ module bsg_fifo_tracker #(parameter `BSG_INV_PARAM(els_p           )
     , output full_o
     , output empty_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // one read pointer, one write pointer;
    logic [ptr_width_lp-1:0] rptr_r, rptr_n, wptr_r;
@@ -95,6 +96,7 @@ module bsg_fifo_tracker #(parameter `BSG_INV_PARAM(els_p           )
    assign full_o = full;
    assign empty_o = empty;
 
+endgenerate
 endmodule // bsg_fifo_tracker
 
 `BSG_ABSTRACT_MODULE(bsg_fifo_tracker)

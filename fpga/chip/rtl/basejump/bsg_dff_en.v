@@ -14,6 +14,7 @@ module bsg_dff_en #(parameter `BSG_INV_PARAM(width_p)
   ,input en_i
   ,output logic [width_p-1:0] data_o
 );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
   logic [width_p-1:0] data_r;
 
@@ -25,6 +26,7 @@ module bsg_dff_en #(parameter `BSG_INV_PARAM(width_p)
     end
   end
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_dff_en)

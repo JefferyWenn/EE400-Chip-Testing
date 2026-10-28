@@ -9,6 +9,7 @@ module bsg_dff #(parameter `BSG_INV_PARAM(width_p)
     ,input  [width_p-1:0] data_i
     ,output [width_p-1:0] data_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    reg [width_p-1:0] data_r;
 
@@ -17,6 +18,7 @@ module bsg_dff #(parameter `BSG_INV_PARAM(width_p)
    always @(posedge clk_i)
      data_r <= data_i;
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_dff)

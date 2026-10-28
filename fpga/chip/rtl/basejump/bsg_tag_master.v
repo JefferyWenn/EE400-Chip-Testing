@@ -23,6 +23,7 @@
 
 module bsg_tag_master
   import bsg_tag_pkg::bsg_tag_s;
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // els_p is the number of clients to attach
    // lg_width_p is the number of bits used to describe the payload size
@@ -253,6 +254,7 @@ module bsg_tag_master
      end
 
    
+endgenerate
 endmodule // bsg_tag_master
 
 `BSG_ABSTRACT_MODULE(bsg_tag_master)

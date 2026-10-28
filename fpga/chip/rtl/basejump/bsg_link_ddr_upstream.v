@@ -74,9 +74,9 @@ module bsg_link_ddr_upstream
   ,parameter use_encode_p = 0
   ,parameter bypass_twofer_fifo_p = 0
   ,parameter bypass_gearbox_p = 0
-  ,localparam ddr_width_lp  = channel_width_p*2 + use_extra_data_bit_p
-  ,localparam piso_ratio_lp = width_p/(ddr_width_lp*num_channels_p)
-  ,localparam phy_width_lp  = channel_width_p+1
+  ,parameter ddr_width_lp  = channel_width_p*2 + use_extra_data_bit_p
+  ,parameter piso_ratio_lp = width_p/(ddr_width_lp*num_channels_p)
+  ,parameter phy_width_lp  = channel_width_p+1
   )
 
   (// Core side
@@ -97,6 +97,7 @@ module bsg_link_ddr_upstream
   ,output logic [num_channels_p-1:0]                      io_valid_r_o
   ,input        [num_channels_p-1:0]                      token_clk_i
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   
   logic core_piso_valid_lo, core_piso_yumi_li;
@@ -234,5 +235,6 @@ module bsg_link_ddr_upstream
   end
   // synopsys translate_on
 
+endgenerate
 endmodule
 `BSG_ABSTRACT_MODULE(bsg_link_ddr_upstream)

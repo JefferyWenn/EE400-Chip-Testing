@@ -35,6 +35,7 @@ module bsg_fifo_1r1w_small #( parameter `BSG_INV_PARAM(width_p      )
     , output [width_p-1:0] data_o
     , input                yumi_i
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
     
   if (harden_p == 0)
     begin: unhardened
@@ -52,15 +53,9 @@ module bsg_fifo_1r1w_small #( parameter `BSG_INV_PARAM(width_p      )
         (.*);
       end
     end
-  else
-    begin: hardened
-      bsg_fifo_1r1w_small_hardened #(.width_p(width_p)
-                                    ,.els_p(els_p)
-                                    ,.ready_THEN_valid_p(ready_THEN_valid_p)
-                                    ) fifo
-      (.*);
-    end
+  // FPGA: "hardened" branch removed (harden_p is always 0; module does not exist)
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_fifo_1r1w_small)

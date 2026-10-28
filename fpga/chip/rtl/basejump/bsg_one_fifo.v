@@ -31,6 +31,7 @@ module bsg_one_fifo #(parameter `BSG_INV_PARAM(width_p)
     , output[width_p-1:0] data_o  // early
     , input               yumi_i  // late
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   logic             full_r;
   
@@ -53,6 +54,7 @@ module bsg_one_fifo #(parameter `BSG_INV_PARAM(width_p)
    ,.data_o
   );
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_one_fifo)

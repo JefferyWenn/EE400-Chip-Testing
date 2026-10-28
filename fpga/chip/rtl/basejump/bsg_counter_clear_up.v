@@ -22,6 +22,7 @@ module bsg_counter_clear_up #(parameter `BSG_INV_PARAM(max_val_p)
     // depend on this being a register and we want to indicate this at the interface level
     , output logic [ptr_width_lp-1:0] count_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // keeping track of number of entries and updating read and
    // write pointers, and displaying errors in case of overflow
@@ -52,6 +53,7 @@ module bsg_counter_clear_up #(parameter `BSG_INV_PARAM(max_val_p)
 
 //synopsys translate_on
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_counter_clear_up)

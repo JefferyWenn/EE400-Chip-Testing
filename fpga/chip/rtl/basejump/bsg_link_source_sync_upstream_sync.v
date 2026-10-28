@@ -31,6 +31,7 @@ module bsg_link_source_sync_upstream_sync
   ,output [width_p-1:0] io_data_o
   ,input                token_clk_i
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
   logic io_fifo_v, io_fifo_ready;
   logic [width_p-1:0] io_fifo_data;
@@ -173,6 +174,7 @@ module bsg_link_source_sync_upstream_sync
         ,.r_credits_avail_o   (io_negedge_credits_avail)
         );
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_link_source_sync_upstream_sync)

@@ -69,6 +69,7 @@ module bsg_link_source_sync_downstream
   ,output                       core_valid_o
   ,input                        core_yumi_i
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    // ******************************************
    // clock-crossing async fifo (with DDR interface)
@@ -214,4 +215,5 @@ module bsg_link_source_sync_downstream
   ,.count_o(core_credits_sent_r)
   );
 
+endgenerate
 endmodule // bsg_source_sync_input

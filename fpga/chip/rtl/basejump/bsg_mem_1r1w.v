@@ -26,6 +26,7 @@ module bsg_mem_1r1w #(parameter `BSG_INV_PARAM(width_p)
 
     , output logic [`BSG_SAFE_MINUS(width_p, 1):0] r_data_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    bsg_mem_1r1w_synth
      #(.width_p(width_p)
@@ -55,6 +56,7 @@ module bsg_mem_1r1w #(parameter `BSG_INV_PARAM(width_p)
 
    //synopsys translate_on
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_mem_1r1w)

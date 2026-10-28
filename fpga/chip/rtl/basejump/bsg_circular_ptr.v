@@ -19,6 +19,7 @@ module bsg_circular_ptr #(parameter `BSG_INV_PARAM(slots_p)
     , output [ptr_width_lp-1:0] o
     , output [ptr_width_lp-1:0] n_o
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    logic [ptr_width_lp-1:0] ptr_r, ptr_n, ptr_nowrap;
    logic [ptr_width_lp:0]   ptr_wrap;
@@ -77,6 +78,7 @@ module bsg_circular_ptr #(parameter `BSG_INV_PARAM(slots_p)
             end
 	  // synopsys translate_on
 end
+endgenerate
 endmodule // bsg_circular_ptr
 
 `BSG_ABSTRACT_MODULE(bsg_circular_ptr)

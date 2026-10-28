@@ -67,9 +67,9 @@ module bsg_link_ddr_downstream
   ,parameter bypass_twofer_fifo_p = 0
   ,parameter bypass_gearbox_p = 0
   ,parameter use_hardened_fifo_p = 0
-  ,localparam ddr_width_lp  = channel_width_p*2 + use_extra_data_bit_p
-  ,localparam sipo_ratio_lp = width_p/(ddr_width_lp*num_channels_p)
-  ,localparam phy_width_lp  = channel_width_p+1
+  ,parameter ddr_width_lp  = channel_width_p*2 + use_extra_data_bit_p
+  ,parameter sipo_ratio_lp = width_p/(ddr_width_lp*num_channels_p)
+  ,parameter phy_width_lp  = channel_width_p+1
   )
 
   (// All reset / control signals are synchronous to core_clk
@@ -90,6 +90,7 @@ module bsg_link_ddr_downstream
   ,input [num_channels_p-1:0]                      io_valid_i
   ,output logic [num_channels_p-1:0]               core_token_r_o
   );
+   generate // FPGA (Quartus Lite) needs explicit generate
   
   
   logic core_sipo_ready_lo, core_sipo_yumi_lo;
@@ -217,5 +218,6 @@ module bsg_link_ddr_downstream
   end
   // synopsys translate_on
 
+endgenerate
 endmodule
 `BSG_ABSTRACT_MODULE(bsg_link_ddr_downstream)

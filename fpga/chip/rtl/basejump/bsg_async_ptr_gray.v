@@ -29,6 +29,7 @@ module bsg_async_ptr_gray #(parameter `BSG_INV_PARAM(lg_size_p )
     , output [lg_size_p-1:0] w_ptr_gray_r_o       // same; gray coded; value before synchronizers
     , output [lg_size_p-1:0] w_ptr_gray_r_rsync_o // value after  synchronizers
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    logic [lg_size_p-1:0] w_ptr_r,      w_ptr_n;
    logic [lg_size_p-1:0] w_ptr_p1_r,   w_ptr_p1_n, w_ptr_p2;
@@ -159,6 +160,7 @@ module bsg_async_ptr_gray #(parameter `BSG_INV_PARAM(lg_size_p )
    assign w_ptr_gray_r_o       = w_ptr_gray_r;
    assign w_ptr_gray_r_rsync_o = w_ptr_gray_r_rsync;
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_async_ptr_gray)

@@ -83,6 +83,7 @@ module bsg_link_source_sync_upstream
     , input                               io_ready_i   // output PHY is ready
     , input                               token_clk_i  // input token clock
    );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
 
   logic core_fifo_valid, core_fifo_yumi;
@@ -307,4 +308,5 @@ module bsg_link_source_sync_upstream
         );
 
 
+endgenerate
 endmodule

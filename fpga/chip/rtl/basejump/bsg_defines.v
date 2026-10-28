@@ -23,12 +23,8 @@
 //    module name. Such an instance is called a top-level instance."
 //  
 
-`define BSG_ABSTRACT_MODULE(fn) \
-    /*verilator lint_off DECLFILENAME*/ \
-    /*verilator lint_off PINMISSING*/ \
-    module fn``__abstract(); if (0) fn not_used(); endmodule \
-    /*verilator lint_on PINMISSING*/ \
-    /*verilator lint_on DECLFILENAME*/
+// FPGA (Quartus Lite): lint-only helper module removed
+`define BSG_ABSTRACT_MODULE(fn)
 
 // macro for defining invalid parameter; with the abstract module declaration
 // it should be sufficient to omit the "inv" but we include this for tool portability

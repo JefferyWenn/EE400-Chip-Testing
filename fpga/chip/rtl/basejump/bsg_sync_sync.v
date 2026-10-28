@@ -86,6 +86,7 @@ module bsg_sync_sync #(parameter `BSG_INV_PARAM(width_p ))
     , input  [width_p-1:0] iclk_data_i
     , output [width_p-1:0] oclk_data_o // after sync flops
     );
+   generate // FPGA (Quartus Lite) needs explicit generate
 
    genvar   i;
 
@@ -115,6 +116,7 @@ module bsg_sync_sync #(parameter `BSG_INV_PARAM(width_p ))
              `bss_if_clause(6) else
                `bss_if_clause(7)
 
+endgenerate
 endmodule
 
 `BSG_ABSTRACT_MODULE(bsg_sync_sync)
