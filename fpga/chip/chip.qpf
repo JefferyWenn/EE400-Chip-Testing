@@ -1,0 +1,4 @@
+# chip.qpf - Quartus project for FPGA A (the "chip" board)
+# Open this file in Quartus. All settings are in chip.qsf.
+
+PROJECT_REVISION = "chip"

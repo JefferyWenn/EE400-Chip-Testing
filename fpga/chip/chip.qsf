@@ -1,0 +1,183 @@
+# chip.qsf - Quartus settings for FPGA A (the "chip" board, DE1-SoC)
+
+# ---- Device and top level ----
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY chip_fpga_top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+# RTL uses SystemVerilog (always_ff, logic) also in .v files
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+# Folder for `include files (bsg_defines.v, bsg_tag.vh)
+set_global_assignment -name SEARCH_PATH rtl/basejump
+
+# Unused FPGA pins: inputs, not driven
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+
+# ---- Timing constraints ----
+set_global_assignment -name SDC_FILE chip.sdc
+
+# ---- Source files ----
+# Our files
+set_global_assignment -name VERILOG_FILE chip_fpga_top.v
+set_global_assignment -name VERILOG_FILE ../common/tsmc_fpga_models.v
+# Chip RTL (copied from chip/, final Jun 6 version)
+set_global_assignment -name VERILOG_FILE rtl/design/adc_8bit_buf.v
+set_global_assignment -name VERILOG_FILE rtl/design/bsg_link_upstream_ctl.v
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/bsg_link_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/chip_top.sv
+set_global_assignment -name VERILOG_FILE rtl/design/cnn_result_buf.v
+set_global_assignment -name VERILOG_FILE rtl/design/ctrl_top.v
+set_global_assignment -name VERILOG_FILE rtl/design/data_ram.v
+set_global_assignment -name VERILOG_FILE rtl/design/firmware_loader.v
+set_global_assignment -name VERILOG_FILE rtl/design/i2c_init.v
+set_global_assignment -name VERILOG_FILE rtl/design/instr_ram.v
+set_global_assignment -name VERILOG_FILE rtl/design/mux_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/design/pkt_framer.v
+set_global_assignment -name VERILOG_FILE rtl/design/scan_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_aligner.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_alu.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_bufreg.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_bufreg2.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_compdec.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_csr.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_debug.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_decode.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_immdec.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_mem_if.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_rf_if.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_rf_ram.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_rf_ram_if.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_rf_top.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_state.v
+set_global_assignment -name VERILOG_FILE rtl/design/serv_top.v
+set_global_assignment -name VERILOG_FILE rtl/design/spi_master.v
+set_global_assignment -name VERILOG_FILE rtl/design/uart_peripheral.v
+set_global_assignment -name VERILOG_FILE rtl/design/uart_tx.v
+# BaseJump STL (bsg_link and helpers)
+# (package: must come before the files that use it)
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_tag_pkg.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_async_credit_counter.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_async_fifo.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_async_ptr_gray.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_circular_ptr.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_counter_clear_up.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_dff.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_dff_en.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_fifo_1r1w_small.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_fifo_1r1w_small_unhardened.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_fifo_tracker.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_gray_to_binary.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_launch_sync_sync.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_ddr_downstream.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_ddr_upstream.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_iddr_phy.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_oddr_phy.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_source_sync_downstream.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_source_sync_upstream.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_link_source_sync_upstream_sync.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_mem_1r1w.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_mem_1r1w_synth.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_one_fifo.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_parallel_in_serial_out.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_round_robin_1_to_n.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_scan.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_serial_in_parallel_out.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_serial_in_parallel_out_full.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_sync_sync.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_tag_master.v
+set_global_assignment -name VERILOG_FILE rtl/basejump/bsg_two_fifo.v
+
+# ---- Pins (from DE1-SoC User Manual, Tables 3-14 and 3-11) ----
+# All header and LED pins are 3.3 V
+# GPIO_0 header (JP1): PAD 0..35
+set_location_assignment PIN_AC18 -to GPIO_0[0]
+set_location_assignment PIN_Y17 -to GPIO_0[1]
+set_location_assignment PIN_AD17 -to GPIO_0[2]
+set_location_assignment PIN_Y18 -to GPIO_0[3]
+set_location_assignment PIN_AK16 -to GPIO_0[4]
+set_location_assignment PIN_AK18 -to GPIO_0[5]
+set_location_assignment PIN_AK19 -to GPIO_0[6]
+set_location_assignment PIN_AJ19 -to GPIO_0[7]
+set_location_assignment PIN_AJ17 -to GPIO_0[8]
+set_location_assignment PIN_AJ16 -to GPIO_0[9]
+set_location_assignment PIN_AH18 -to GPIO_0[10]
+set_location_assignment PIN_AH17 -to GPIO_0[11]
+set_location_assignment PIN_AG16 -to GPIO_0[12]
+set_location_assignment PIN_AE16 -to GPIO_0[13]
+set_location_assignment PIN_AF16 -to GPIO_0[14]
+set_location_assignment PIN_AG17 -to GPIO_0[15]
+set_location_assignment PIN_AA18 -to GPIO_0[16]
+set_location_assignment PIN_AA19 -to GPIO_0[17]
+set_location_assignment PIN_AE17 -to GPIO_0[18]
+set_location_assignment PIN_AC20 -to GPIO_0[19]
+set_location_assignment PIN_AH19 -to GPIO_0[20]
+set_location_assignment PIN_AJ20 -to GPIO_0[21]
+set_location_assignment PIN_AH20 -to GPIO_0[22]
+set_location_assignment PIN_AK21 -to GPIO_0[23]
+set_location_assignment PIN_AD19 -to GPIO_0[24]
+set_location_assignment PIN_AD20 -to GPIO_0[25]
+set_location_assignment PIN_AE18 -to GPIO_0[26]
+set_location_assignment PIN_AE19 -to GPIO_0[27]
+set_location_assignment PIN_AF20 -to GPIO_0[28]
+set_location_assignment PIN_AF21 -to GPIO_0[29]
+set_location_assignment PIN_AF19 -to GPIO_0[30]
+set_location_assignment PIN_AG21 -to GPIO_0[31]
+set_location_assignment PIN_AF18 -to GPIO_0[32]
+set_location_assignment PIN_AG20 -to GPIO_0[33]
+set_location_assignment PIN_AG18 -to GPIO_0[34]
+set_location_assignment PIN_AJ21 -to GPIO_0[35]
+# GPIO_1 header (JP2): PAD 36..47 on GPIO_1[0..11], rest unused
+set_location_assignment PIN_AB17 -to GPIO_1[0]
+set_location_assignment PIN_AA21 -to GPIO_1[1]
+set_location_assignment PIN_AB21 -to GPIO_1[2]
+set_location_assignment PIN_AC23 -to GPIO_1[3]
+set_location_assignment PIN_AD24 -to GPIO_1[4]
+set_location_assignment PIN_AE23 -to GPIO_1[5]
+set_location_assignment PIN_AE24 -to GPIO_1[6]
+set_location_assignment PIN_AF25 -to GPIO_1[7]
+set_location_assignment PIN_AF26 -to GPIO_1[8]
+set_location_assignment PIN_AG25 -to GPIO_1[9]
+set_location_assignment PIN_AG26 -to GPIO_1[10]
+set_location_assignment PIN_AH24 -to GPIO_1[11]
+set_location_assignment PIN_AH27 -to GPIO_1[12]
+set_location_assignment PIN_AJ27 -to GPIO_1[13]
+set_location_assignment PIN_AK29 -to GPIO_1[14]
+set_location_assignment PIN_AK28 -to GPIO_1[15]
+set_location_assignment PIN_AK27 -to GPIO_1[16]
+set_location_assignment PIN_AJ26 -to GPIO_1[17]
+set_location_assignment PIN_AK26 -to GPIO_1[18]
+set_location_assignment PIN_AH25 -to GPIO_1[19]
+set_location_assignment PIN_AJ25 -to GPIO_1[20]
+set_location_assignment PIN_AJ24 -to GPIO_1[21]
+set_location_assignment PIN_AK24 -to GPIO_1[22]
+set_location_assignment PIN_AG23 -to GPIO_1[23]
+set_location_assignment PIN_AK23 -to GPIO_1[24]
+set_location_assignment PIN_AH23 -to GPIO_1[25]
+set_location_assignment PIN_AK22 -to GPIO_1[26]
+set_location_assignment PIN_AJ22 -to GPIO_1[27]
+set_location_assignment PIN_AH22 -to GPIO_1[28]
+set_location_assignment PIN_AG22 -to GPIO_1[29]
+set_location_assignment PIN_AF24 -to GPIO_1[30]
+set_location_assignment PIN_AF23 -to GPIO_1[31]
+set_location_assignment PIN_AE22 -to GPIO_1[32]
+set_location_assignment PIN_AD21 -to GPIO_1[33]
+set_location_assignment PIN_AA20 -to GPIO_1[34]
+set_location_assignment PIN_AC22 -to GPIO_1[35]
+# Red LEDs
+set_location_assignment PIN_V16 -to LEDR[0]
+set_location_assignment PIN_W16 -to LEDR[1]
+set_location_assignment PIN_V17 -to LEDR[2]
+set_location_assignment PIN_V18 -to LEDR[3]
+set_location_assignment PIN_W17 -to LEDR[4]
+set_location_assignment PIN_W19 -to LEDR[5]
+set_location_assignment PIN_Y19 -to LEDR[6]
+set_location_assignment PIN_W20 -to LEDR[7]
+set_location_assignment PIN_W21 -to LEDR[8]
+set_location_assignment PIN_Y21 -to LEDR[9]
+
+# IO standard for every pin above
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[*]
