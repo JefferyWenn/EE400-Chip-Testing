@@ -48,3 +48,8 @@ fpga/**/incremental_db/
 fpga/**/output_files/
 fpga/**/*.qws
 fpga/**/greybox_tmp/
+
+# Firmware build leftovers (firmware.hex is kept: the driver needs it)
+fpga/firmware/firmware.bin
+fpga/firmware/firmware.dis
+fpga/**/c5_pin_model_dump.txt

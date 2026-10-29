@@ -20,6 +20,7 @@ set_global_assignment -name SDC_FILE chip.sdc
 # ---- Source files ----
 # Our files
 set_global_assignment -name VERILOG_FILE chip_fpga_top.v
+set_global_assignment -name VERILOG_FILE chip_leds.v
 set_global_assignment -name VERILOG_FILE ../common/tsmc_fpga_models.v
 # Chip RTL (copied from chip/, final Jun 6 version)
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/adc_8bit_buf.v
@@ -87,82 +88,106 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_link_source_sync
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_serial_in_parallel_out.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_sync_sync.v
 
-# ---- Pins (from DE1-SoC User Manual, Tables 3-14 and 3-11) ----
+# ---- Pins (from DE1-SoC User Manual, Tables 3-9, 3-11, 3-14) ----
 # All header and LED pins are 3.3 V
-# GPIO_0 header (JP1): PAD 0..35
-set_location_assignment PIN_AC18 -to GPIO_0[0]
-set_location_assignment PIN_Y17 -to GPIO_0[1]
-set_location_assignment PIN_AD17 -to GPIO_0[2]
-set_location_assignment PIN_Y18 -to GPIO_0[3]
-set_location_assignment PIN_AK16 -to GPIO_0[4]
-set_location_assignment PIN_AK18 -to GPIO_0[5]
-set_location_assignment PIN_AK19 -to GPIO_0[6]
-set_location_assignment PIN_AJ19 -to GPIO_0[7]
-set_location_assignment PIN_AJ17 -to GPIO_0[8]
-set_location_assignment PIN_AJ16 -to GPIO_0[9]
-set_location_assignment PIN_AH18 -to GPIO_0[10]
-set_location_assignment PIN_AH17 -to GPIO_0[11]
-set_location_assignment PIN_AG16 -to GPIO_0[12]
-set_location_assignment PIN_AE16 -to GPIO_0[13]
-set_location_assignment PIN_AF16 -to GPIO_0[14]
-set_location_assignment PIN_AG17 -to GPIO_0[15]
-set_location_assignment PIN_AA18 -to GPIO_0[16]
-set_location_assignment PIN_AA19 -to GPIO_0[17]
-set_location_assignment PIN_AE17 -to GPIO_0[18]
-set_location_assignment PIN_AC20 -to GPIO_0[19]
-set_location_assignment PIN_AH19 -to GPIO_0[20]
-set_location_assignment PIN_AJ20 -to GPIO_0[21]
-set_location_assignment PIN_AH20 -to GPIO_0[22]
-set_location_assignment PIN_AK21 -to GPIO_0[23]
-set_location_assignment PIN_AD19 -to GPIO_0[24]
-set_location_assignment PIN_AD20 -to GPIO_0[25]
-set_location_assignment PIN_AE18 -to GPIO_0[26]
-set_location_assignment PIN_AE19 -to GPIO_0[27]
-set_location_assignment PIN_AF20 -to GPIO_0[28]
-set_location_assignment PIN_AF21 -to GPIO_0[29]
-set_location_assignment PIN_AF19 -to GPIO_0[30]
-set_location_assignment PIN_AG21 -to GPIO_0[31]
-set_location_assignment PIN_AF18 -to GPIO_0[32]
-set_location_assignment PIN_AG20 -to GPIO_0[33]
-set_location_assignment PIN_AG18 -to GPIO_0[34]
-set_location_assignment PIN_AJ21 -to GPIO_0[35]
-# GPIO_1 header (JP2): PAD 36..47 on GPIO_1[0..11], rest unused
-set_location_assignment PIN_AB17 -to GPIO_1[0]
-set_location_assignment PIN_AA21 -to GPIO_1[1]
-set_location_assignment PIN_AB21 -to GPIO_1[2]
-set_location_assignment PIN_AC23 -to GPIO_1[3]
-set_location_assignment PIN_AD24 -to GPIO_1[4]
-set_location_assignment PIN_AE23 -to GPIO_1[5]
-set_location_assignment PIN_AE24 -to GPIO_1[6]
-set_location_assignment PIN_AF25 -to GPIO_1[7]
-set_location_assignment PIN_AF26 -to GPIO_1[8]
-set_location_assignment PIN_AG25 -to GPIO_1[9]
-set_location_assignment PIN_AG26 -to GPIO_1[10]
-set_location_assignment PIN_AH24 -to GPIO_1[11]
-set_location_assignment PIN_AH27 -to GPIO_1[12]
-set_location_assignment PIN_AJ27 -to GPIO_1[13]
-set_location_assignment PIN_AK29 -to GPIO_1[14]
-set_location_assignment PIN_AK28 -to GPIO_1[15]
-set_location_assignment PIN_AK27 -to GPIO_1[16]
-set_location_assignment PIN_AJ26 -to GPIO_1[17]
-set_location_assignment PIN_AK26 -to GPIO_1[18]
-set_location_assignment PIN_AH25 -to GPIO_1[19]
-set_location_assignment PIN_AJ25 -to GPIO_1[20]
-set_location_assignment PIN_AJ24 -to GPIO_1[21]
-set_location_assignment PIN_AK24 -to GPIO_1[22]
-set_location_assignment PIN_AG23 -to GPIO_1[23]
-set_location_assignment PIN_AK23 -to GPIO_1[24]
-set_location_assignment PIN_AH23 -to GPIO_1[25]
-set_location_assignment PIN_AK22 -to GPIO_1[26]
-set_location_assignment PIN_AJ22 -to GPIO_1[27]
-set_location_assignment PIN_AH22 -to GPIO_1[28]
-set_location_assignment PIN_AG22 -to GPIO_1[29]
-set_location_assignment PIN_AF24 -to GPIO_1[30]
-set_location_assignment PIN_AF23 -to GPIO_1[31]
-set_location_assignment PIN_AE22 -to GPIO_1[32]
-set_location_assignment PIN_AD21 -to GPIO_1[33]
-set_location_assignment PIN_AA20 -to GPIO_1[34]
-set_location_assignment PIN_AC22 -to GPIO_1[35]
+# Chip pads on the GPIO headers: PAD n = GPIO_0[n] (n<36) or GPIO_1[n-36]
+# Same physical pins on both boards, so a straight cable connects them.
+# PAD 30-35 are unused.
+# PAD  0  GPIO_0[0]   JP1
+set_location_assignment PIN_AC18 -to dn_data[0]
+# PAD  1  GPIO_0[1]   JP1
+set_location_assignment PIN_Y17 -to dn_data[1]
+# PAD  2  GPIO_0[2]   JP1
+set_location_assignment PIN_AD17 -to dn_data[2]
+# PAD  3  GPIO_0[3]   JP1
+set_location_assignment PIN_Y18 -to dn_data[3]
+# PAD  4  GPIO_0[4]   JP1
+set_location_assignment PIN_AK16 -to dn_data[4]
+# PAD  5  GPIO_0[5]   JP1
+set_location_assignment PIN_AK18 -to dn_data[5]
+# PAD  6  GPIO_0[6]   JP1
+set_location_assignment PIN_AK19 -to dn_data[6]
+# PAD  7  GPIO_0[7]   JP1
+set_location_assignment PIN_AJ19 -to dn_data[7]
+# PAD  8  GPIO_0[8]   JP1
+set_location_assignment PIN_AJ17 -to dn_clk
+# PAD  9  GPIO_0[9]   JP1
+set_location_assignment PIN_AJ16 -to dn_valid
+# PAD 10  GPIO_0[10]  JP1
+set_location_assignment PIN_AH18 -to dn_token
+# PAD 11  GPIO_0[11]  JP1
+set_location_assignment PIN_AH17 -to scan_en
+# PAD 12  GPIO_0[12]  JP1
+set_location_assignment PIN_AG16 -to token_clk
+# PAD 13  GPIO_0[13]  JP1
+set_location_assignment PIN_AE16 -to spi_sclk
+# PAD 14  GPIO_0[14]  JP1
+set_location_assignment PIN_AF16 -to up_valid
+# PAD 15  GPIO_0[15]  JP1
+set_location_assignment PIN_AG17 -to up_clk
+# PAD 16  GPIO_0[16]  JP1
+set_location_assignment PIN_AA18 -to up_data[6]
+# PAD 17  GPIO_0[17]  JP1
+set_location_assignment PIN_AA19 -to up_data[7]
+# PAD 18  GPIO_0[18]  JP1
+set_location_assignment PIN_AE17 -to up_data[4]
+# PAD 19  GPIO_0[19]  JP1
+set_location_assignment PIN_AC20 -to up_data[5]
+# PAD 20  GPIO_0[20]  JP1
+set_location_assignment PIN_AH19 -to up_data[2]
+# PAD 21  GPIO_0[21]  JP1
+set_location_assignment PIN_AJ20 -to up_data[3]
+# PAD 22  GPIO_0[22]  JP1
+set_location_assignment PIN_AH20 -to up_data[0]
+# PAD 23  GPIO_0[23]  JP1
+set_location_assignment PIN_AK21 -to up_data[1]
+# PAD 24  GPIO_0[24]  JP1
+set_location_assignment PIN_AD19 -to uart_rx
+# PAD 25  GPIO_0[25]  JP1
+set_location_assignment PIN_AD20 -to spi_miso
+# PAD 26  GPIO_0[26]  JP1
+set_location_assignment PIN_AE18 -to spi_cs_n
+# PAD 27  GPIO_0[27]  JP1
+set_location_assignment PIN_AE19 -to uart_tx
+# PAD 28  GPIO_0[28]  JP1
+set_location_assignment PIN_AF20 -to i2c_scl
+# PAD 29  GPIO_0[29]  JP1
+set_location_assignment PIN_AF21 -to i2c_sda
+# PAD 36  GPIO_1[0]   JP2
+set_location_assignment PIN_AB17 -to mux_row[0]
+# PAD 37  GPIO_1[1]   JP2
+set_location_assignment PIN_AA21 -to mux_row[1]
+# PAD 38  GPIO_1[2]   JP2
+set_location_assignment PIN_AB21 -to mux_row[2]
+# PAD 39  GPIO_1[3]   JP2
+set_location_assignment PIN_AC23 -to mux_row[3]
+# PAD 40  GPIO_1[4]   JP2
+set_location_assignment PIN_AD24 -to mux_col[0]
+# PAD 41  GPIO_1[5]   JP2
+set_location_assignment PIN_AE23 -to mux_col[1]
+# PAD 42  GPIO_1[6]   JP2
+set_location_assignment PIN_AE24 -to mux_col[2]
+# PAD 43  GPIO_1[7]   JP2
+set_location_assignment PIN_AF25 -to mux_col[3]
+# PAD 44  GPIO_1[8]   JP2
+set_location_assignment PIN_AF26 -to core_clk
+# PAD 45  GPIO_1[9]   JP2
+set_location_assignment PIN_AG25 -to hard_reset
+# PAD 46  GPIO_1[10]  JP2
+set_location_assignment PIN_AG26 -to scan_in
+# PAD 47  GPIO_1[11]  JP2
+set_location_assignment PIN_AH24 -to scan_out
+# Slide switches (SW0 = chip reset)
+set_location_assignment PIN_AB12 -to SW[0]
+set_location_assignment PIN_AC12 -to SW[1]
+set_location_assignment PIN_AF9 -to SW[2]
+set_location_assignment PIN_AF10 -to SW[3]
+set_location_assignment PIN_AD11 -to SW[4]
+set_location_assignment PIN_AD12 -to SW[5]
+set_location_assignment PIN_AE11 -to SW[6]
+set_location_assignment PIN_AC9 -to SW[7]
+set_location_assignment PIN_AD10 -to SW[8]
+set_location_assignment PIN_AE12 -to SW[9]
 # Red LEDs
 set_location_assignment PIN_V16 -to LEDR[0]
 set_location_assignment PIN_W16 -to LEDR[1]
@@ -176,6 +201,33 @@ set_location_assignment PIN_W21 -to LEDR[8]
 set_location_assignment PIN_Y21 -to LEDR[9]
 
 # IO standard for every pin above
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[*]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to core_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_data[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_token
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_valid
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to hard_reset
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i2c_scl
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to i2c_sda
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mux_col[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to mux_row[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to scan_en
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to scan_in
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to scan_out
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_cs_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_miso
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to spi_sclk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to token_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_tx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to up_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to up_data[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to up_valid
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[*]
+
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

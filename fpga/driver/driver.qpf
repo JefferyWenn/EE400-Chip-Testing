@@ -1,0 +1,4 @@
+# driver.qpf - Quartus project for FPGA B (the "test driver" board)
+# Open this file in Quartus. All settings are in driver.qsf.
+
+PROJECT_REVISION = "driver"
