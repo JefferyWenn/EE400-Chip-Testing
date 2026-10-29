@@ -14,10 +14,12 @@ module status (
     input  wire [7:0] order_errors,  // running count
     input  wire [7:0] kick_lost,     // running count
     input  wire [7:0] packets,       // running count of 0xB0 bytes
+    input  wire [7:0] peak_val,      // strongest pixel in the last frame
+    input  wire [7:0] peak_pos,      // its position {row, col}
 
     output reg  [7:0] show_fps   = 0,   // for HEX5-4
-    output reg  [3:0] show_order = 0,   // for HEX3
-    output reg  [8:0] show_worst = 0,   // for HEX2-0
+    output reg  [7:0] show_peak  = 0,   // for HEX3-2
+    output reg  [7:0] show_pos   = 0,   // for HEX1-0
     output reg        any_frame  = 0,   // a frame has arrived
     output reg        any_short  = 0,   // some frame had < 256 pixels
     output reg        any_kick   = 0,   // some KICKOFF was lost
@@ -68,11 +70,11 @@ module status (
     // ---- What the HEX shows: refresh twice per second unless frozen ----
     always @(posedge clk) begin
         if (reset) begin
-            show_fps <= 0; show_order <= 0; show_worst <= 0;
+            show_fps <= 0; show_peak <= 0; show_pos <= 0;
         end else if (tick && !freeze) begin
-            show_fps   <= fps;
-            show_order <= order_errors[3:0];
-            show_worst <= any_frame ? worst : 9'd0;
+            show_fps  <= fps;
+            show_peak <= peak_val;
+            show_pos  <= peak_pos;
         end
     end
 endmodule

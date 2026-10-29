@@ -1,0 +1,3 @@
+# fullsys.qpf - full-system emulation (driver + chip on one board)
+
+PROJECT_REVISION = "fullsys"

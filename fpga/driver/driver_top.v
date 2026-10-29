@@ -12,15 +12,16 @@
 //
 // Board controls:
 //   SW0 up = hold everything in reset, down = run
-//   SW1 up = freeze the HEX displays
+//   SW1 up = send the firmware (once sending starts it finishes;
+//            SW0 / KEY0 restart clears it)
 //   KEY0 = restart (reset chip + link, load firmware again)
 //   LEDR0 system running, LEDR1 clock running, LEDR2 a frame arrived,
 //   LEDR3 every frame had all 256 pixels, LEDR4 firmware sent,
 //   LEDR5 chip ACK (0x06), LEDR6 BOOT OK, LEDR7 result packet came back,
 //   LEDR8 a KICKOFF was lost, LEDR9 a frame was short
 //   (LEDR2-3 and 7-9 stay on until reset)
-//   HEX5-4 = frames per second, HEX3 = pixel order errors,
-//   HEX2-0 = fewest pixels in any frame (0x100 = all)
+//   HEX5-4 = frames per second, HEX3-2 = strongest pixel in the last
+//   frame (00-FF), HEX1-0 = where it is (row, column, 0-F each)
 //   HEX values refresh twice per second (all numbers in hex)
 
 module driver_top #(
@@ -73,7 +74,14 @@ module driver_top #(
         sw1_s <= {sw1_s[0], SW[1]};
     end
     wire restart = ~key_s[1] | sw_s[1];   // 1 = reset everything
-    wire freeze  = sw1_s[1];              // 1 = hold the HEX values
+    wire freeze  = 1'b0;                  // HEX always updates
+
+    // ---- SW1: send firmware. Once flipped up, stays "go" until restart ----
+    reg fw_go = 1'b0;
+    always @(posedge clk) begin
+        if (restart)       fw_go <= 1'b0;
+        else if (sw1_s[1]) fw_go <= 1'b1;
+    end
 
     // ---- Start-up sequence ----
     wire tx_token_reset, tx_io_reset, rx_io_reset, core_reset, startup_done;
@@ -111,19 +119,20 @@ module driver_top #(
     // ---- Fake CNN chip ----
     wire [7:0] frames, order_errors, kick_lost;
     wire [8:0] last_count;
+    wire [7:0] peak_val, peak_pos;
     fake_cnn u_cnn (
         .clk(clk), .reset(core_reset),
         .rx_data(rx_data), .rx_valid(rx_valid),
         .tx_data(tx_data), .tx_valid(tx_valid), .tx_ready(tx_ready),
         .frames(frames), .last_count(last_count), .order_errors(order_errors),
-        .kick_lost(kick_lost)
+        .kick_lost(kick_lost), .peak_val(peak_val), .peak_pos(peak_pos)
     );
 
     // ---- Firmware loader / UART listener (plays the PC) ----
     wire fw_loaded, ack_seen, boot_ok;
     wire [7:0] packets;
     uart_host #(.FW_FILE(FW_FILE)) u_host (
-        .clk(clk), .reset(restart), .start(startup_done),
+        .clk(clk), .reset(restart), .start(startup_done & fw_go),
         .tx(uart_rx), .rx(uart_tx),
         .loaded(fw_loaded), .ack_seen(ack_seen), .boot_ok(boot_ok), .packets(packets)
     );
@@ -141,14 +150,14 @@ module driver_top #(
 
     // ---- Steady values for LEDs / HEX ----
     wire [7:0] show_fps;
-    wire [3:0] show_order;
-    wire [8:0] show_worst;
+    wire [7:0] show_peak, show_pos;
     wire any_frame, any_short, any_kick, any_packet;
     status u_status (
         .clk(clk), .reset(restart), .freeze(freeze),
         .frames(frames), .last_count(last_count), .order_errors(order_errors),
         .kick_lost(kick_lost), .packets(packets),
-        .show_fps(show_fps), .show_order(show_order), .show_worst(show_worst),
+        .peak_val(peak_val), .peak_pos(peak_pos),
+        .show_fps(show_fps), .show_peak(show_peak), .show_pos(show_pos),
         .any_frame(any_frame), .any_short(any_short), .any_kick(any_kick),
         .any_packet(any_packet)
     );
@@ -169,11 +178,11 @@ module driver_top #(
     assign LEDR[9] = any_short;                 // a frame was short
 
     // ---- HEX displays ----
-    hex7seg h0 (.d(show_worst[3:0]),       .seg(HEX0));
-    hex7seg h1 (.d(show_worst[7:4]),       .seg(HEX1));
-    hex7seg h2 (.d({3'b0, show_worst[8]}), .seg(HEX2));
-    hex7seg h3 (.d(show_order),            .seg(HEX3));
-    hex7seg h4 (.d(show_fps[3:0]),         .seg(HEX4));
-    hex7seg h5 (.d(show_fps[7:4]),         .seg(HEX5));
+    hex7seg h0 (.d(show_pos[3:0]),  .seg(HEX0));   // column
+    hex7seg h1 (.d(show_pos[7:4]),  .seg(HEX1));   // row
+    hex7seg h2 (.d(show_peak[3:0]), .seg(HEX2));   // strongest pixel
+    hex7seg h3 (.d(show_peak[7:4]), .seg(HEX3));
+    hex7seg h4 (.d(show_fps[3:0]),  .seg(HEX4));   // frames per second
+    hex7seg h5 (.d(show_fps[7:4]),  .seg(HEX5));
 
 endmodule

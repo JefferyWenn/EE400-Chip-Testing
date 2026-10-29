@@ -24,7 +24,9 @@ module fake_cnn (
     output reg  [7:0]  frames,        // frames received
     output reg  [8:0]  last_count,    // pixels in the last frame (256 = all)
     output reg  [7:0]  order_errors,  // pixels that came out of order
-    output reg  [7:0]  kick_lost      // frames where KICKOFF never came
+    output reg  [7:0]  kick_lost,     // frames where KICKOFF never came
+    output reg  [7:0]  peak_val,      // strongest pixel in the last frame
+    output reg  [7:0]  peak_pos       // where it was: {row, col}
 );
     localparam IDLE  = 2'd0,  // wait for 0x0404
                LEN   = 2'd1,  // skip the length flit
@@ -36,6 +38,8 @@ module fake_cnn (
     reg [8:0] last_pixel;     // previous pixel value (to check order)
     reg [3:0] idx;            // which reply flit we are sending
     reg [11:0] quiet;         // clocks since the last flit (in BODY)
+    reg [7:0] max_val;        // strongest pixel so far in this frame
+    reg [7:0] max_pos;        // and its position (pixel number = {row, col})
 
     // Reply packet, one flit per idx
     assign tx_data  = (idx == 0) ? 16'h0004 :        // header (DATA type)
@@ -50,6 +54,8 @@ module fake_cnn (
             last_count   <= 0;
             order_errors <= 0;
             kick_lost    <= 0;
+            peak_val     <= 0;
+            peak_pos     <= 0;
             idx          <= 0;
         end else begin
             case (state)
@@ -59,6 +65,8 @@ module fake_cnn (
                     count      <= 0;
                     quiet      <= 0;
                     last_pixel <= 9'h1FF;   // "none yet"
+                    max_val    <= 0;
+                    max_pos    <= 0;
                     state      <= BODY;
                 end
 
@@ -76,6 +84,8 @@ module fake_cnn (
                     if (rx_data == 16'h0408) begin          // KICKOFF: frame done
                         frames     <= frames + 1'b1;
                         last_count <= count;
+                        peak_val   <= max_val;
+                        peak_pos   <= max_pos;
                         idx        <= 0;
                         state      <= REPLY;
                     end else if (rx_data == 16'h0404) begin // new frame started early
@@ -86,6 +96,10 @@ module fake_cnn (
                         if (last_pixel != 9'h1FF && rx_data[8:0] <= last_pixel)
                             order_errors <= order_errors + 1'b1;
                         last_pixel <= rx_data[8:0];
+                        if (rx_data[7:0] > max_val) begin   // new strongest pixel
+                            max_val <= rx_data[7:0];
+                            max_pos <= count[7:0];
+                        end
                     end
                 end
 
