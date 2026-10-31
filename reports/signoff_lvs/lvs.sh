@@ -1,0 +1,1 @@
+/home/lab.apps/vlsiapps_new/calibre/aoj_cal_2021.1_33.19/bin/calibre -64 -lvs -hier -turbo 8 ../lvs_run_file

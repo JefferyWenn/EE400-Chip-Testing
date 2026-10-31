@@ -1,0 +1,48 @@
+LAYOUT PATH "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/logo/chip_top_signoff_logo.gds"
+LAYOUT PRIMARY "chip_top"
+LAYOUT SYSTEM GDSII
+
+SOURCE PATH "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir/chip_top.include.sp"
+SOURCE PRIMARY "chip_top"
+SOURCE SYSTEM SPICE
+
+MASK SVDB DIRECTORY "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/signoff_lvs/run/lvs_results.db" QUERY SI
+
+LVS REPORT "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/signoff_lvs/run/lvs_results.rpt"
+LVS REPORT OPTION NONE
+LVS FILTER UNUSED OPTION AB SOURCE
+LVS FILTER UNUSED OPTION AB LAYOUT
+LVS REPORT MAXIMUM 100
+LVS POWER NAME
+	VDD
+	VDDPST
+	POC
+	
+LVS GROUND NAME
+	VSS
+	VSSPST
+
+LVS RECOGNIZE GATES NONE
+
+LVS ABORT ON SOFTCHK NO
+LVS ABORT ON SUPPLY ERROR NO
+LVS IGNORE PORTS NO
+LVS SHOW SEED PROMOTIONS NO
+
+LVS ISOLATE SHORTS YES BY LAYER BY CELL
+
+//remember to remove this 
+LVS BOX PDDW1216CDG PVDD1CDG PVDD2CDG PVDD2POC
+
+VIRTUAL CONNECT COLON YES
+VIRTUAL CONNECT REPORT YES
+
+LVS EXECUTE ERC YES
+ERC RESULTS DATABASE "/home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/signoff_lvs/run/erc_results.db"
+ERC SUMMARY REPORT "chip_top_signoff.erc.summary" REPLACE
+ERC CELL NAME YES CELL SPACE XFORM
+ERC MAXIMUM RESULTS 1000
+ERC MAXIMUM VERTEX 4096
+
+DRC ICSTATION YES
+INCLUDE "/home/lab.apps/vlsiapps/kits/tsmc/N180RF/tsmc18/Calibre/lvs/calibre.lvs"

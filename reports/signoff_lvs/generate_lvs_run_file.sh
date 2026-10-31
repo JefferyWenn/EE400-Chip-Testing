@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Set the base path prefix here
+BASE_PATH="/homes/projects/digital-vlsi-cad-files/tsmc18"
+
+# Resolve project path
+PROJECT_PATH="../"
+PROJECT_PATH=$(realpath "$PROJECT_PATH")
+
+# Output file name
+OUTPUT_FILE="lvs_run_file"
+
+# Create the run file
+cat > "$OUTPUT_FILE" <<EOF
+LAYOUT PATH "${PROJECT_PATH}/logo/chip_top_signoff_logo.gds"
+LAYOUT PRIMARY "chip_top"
+LAYOUT SYSTEM GDSII
+
+SOURCE PATH "${PROJECT_PATH}/build/lvs-rundir/chip_top.include.sp"
+SOURCE PRIMARY "chip_top"
+SOURCE SYSTEM SPICE
+
+MASK SVDB DIRECTORY "${PROJECT_PATH}/signoff_lvs/run/lvs_results.db" QUERY SI
+
+LVS REPORT "${PROJECT_PATH}/signoff_lvs/run/lvs_results.rpt"
+LVS REPORT OPTION NONE
+LVS FILTER UNUSED OPTION AB SOURCE
+LVS FILTER UNUSED OPTION AB LAYOUT
+LVS REPORT MAXIMUM 100
+LVS POWER NAME
+	VDD
+	VDDPST
+	POC
+	
+LVS GROUND NAME
+	VSS
+	VSSPST
+
+LVS RECOGNIZE GATES NONE
+
+LVS ABORT ON SOFTCHK NO
+LVS ABORT ON SUPPLY ERROR NO
+LVS IGNORE PORTS NO
+LVS SHOW SEED PROMOTIONS NO
+
+LVS ISOLATE SHORTS YES BY LAYER BY CELL
+
+//remember to remove this 
+LVS BOX PDDW1216CDG PVDD1CDG PVDD2CDG PVDD2POC
+
+VIRTUAL CONNECT COLON YES
+VIRTUAL CONNECT REPORT YES
+
+LVS EXECUTE ERC YES
+ERC RESULTS DATABASE "${PROJECT_PATH}/signoff_lvs/run/erc_results.db"
+ERC SUMMARY REPORT "chip_top_signoff.erc.summary" REPLACE
+ERC CELL NAME YES CELL SPACE XFORM
+ERC MAXIMUM RESULTS 1000
+ERC MAXIMUM VERTEX 4096
+
+DRC ICSTATION YES
+INCLUDE "/home/lab.apps/vlsiapps/kits/tsmc/N180RF/tsmc18/Calibre/lvs/calibre.lvs"
+EOF
+
+echo "LVS run file generated as '$OUTPUT_FILE'"
