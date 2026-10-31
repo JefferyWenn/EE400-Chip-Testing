@@ -1,0 +1,1387 @@
+
+
+
+                  ##################################################
+                  ##                                              ##
+                  ##         C A L I B R E    S Y S T E M         ##
+                  ##                                              ##
+                  ##             L V S   R E P O R T              ##
+                  ##                                              ##
+                  ##################################################
+
+
+
+REPORT FILE NAME:         /home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir/lvs_results.rpt
+LAYOUT NAME:              /home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir/lvs_results.db/chip_top.sp ('chip_top')
+SOURCE NAME:              /home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir/chip_top.include.sp ('chip_top')
+RULE FILE:                /home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir/lvs_run_file
+CREATION TIME:            Tue Jun  2 22:32:02 2026
+CURRENT DIRECTORY:        /home/jwen68/Projects/ee478/EE478-tactile-sensing-control/ee478-ctrl-chip/tapeout_v2/build/lvs-rundir
+USER NAME:                jwen68
+CALIBRE VERSION:          v2021.1_33.19    Mon Mar 1 16:10:02 PST 2021
+
+
+
+                               OVERALL COMPARISON RESULTS
+
+
+
+                         #       ###################       _   _   
+                        #        #                 #       *   *   
+                   #   #         #     CORRECT     #         |     
+                    # #          #                 #       \___/  
+                     #           ###################               
+
+
+  Warning:  Components with non-identical power or ground pins.
+  Warning:  Unbalanced smashed mosfets were matched.
+  Warning:  Ambiguity points were found and resolved arbitrarily.
+  Warning:  LVS property resolution maximum exceeded.
+
+
+**************************************************************************************************************
+                                      CELL  SUMMARY
+**************************************************************************************************************
+
+  Result         Layout                        Source
+  -----------    -----------                   --------------
+  CORRECT        chip_top                      chip_top
+
+
+
+**************************************************************************************************************
+                                      LVS PARAMETERS
+**************************************************************************************************************
+
+
+o LVS Setup:
+
+   // LVS COMPONENT TYPE PROPERTY
+   // LVS COMPONENT SUBTYPE PROPERTY
+   // LVS PIN NAME PROPERTY
+   LVS POWER NAME                         "VDD" "VDDPST" "POC"
+   LVS GROUND NAME                        "VSS" "VSSPST"
+   LVS CELL SUPPLY                        NO
+   LVS RECOGNIZE GATES                    NONE
+   // LVS HCELL REPORT
+   LVS IGNORE PORTS                       NO
+   LVS CHECK PORT NAMES                   YES
+   LVS IGNORE TRIVIAL NAMED PORTS         NO
+   LVS BUILTIN DEVICE PIN SWAP            YES
+   LVS ALL CAPACITOR PINS SWAPPABLE       YES
+   LVS DISCARD PINS BY DEVICE             NO
+   LVS SOFT SUBSTRATE PINS                NO
+   LVS INJECT LOGIC                       YES
+   LVS EXPAND UNBALANCED CELLS            YES
+   LVS FLATTEN INSIDE CELL                NO
+   LVS EXPAND SEED PROMOTIONS             NO
+   LVS PRESERVE PARAMETERIZED CELLS       NO
+   LVS GLOBALS ARE PORTS                  YES
+   LVS REVERSE WL                         NO
+   LVS SPICE PREFER PINS                  YES
+   LVS SPICE SLASH IS SPACE               YES
+   LVS SPICE ALLOW FLOATING PINS          YES
+   // LVS SPICE ALLOW INLINE PARAMETERS     
+   LVS SPICE ALLOW UNQUOTED STRINGS       NO
+   LVS SPICE CONDITIONAL LDD              NO
+   LVS SPICE CULL PRIMITIVE SUBCIRCUITS   NO
+   // LVS SPICE EXCLUDE CELL SOURCE
+   // LVS SPICE EXCLUDE CELL LAYOUT
+   LVS SPICE IMPLIED MOS AREA             NO
+   // LVS SPICE MULTIPLIER NAME
+   LVS SPICE OVERRIDE GLOBALS             NO
+   LVS SPICE REDEFINE PARAM               NO
+   LVS SPICE REPLICATE DEVICES            NO
+   LVS SPICE SCALE X PARAMETERS           NO
+   LVS SPICE STRICT WL                    NO
+   // LVS SPICE OPTION
+   LVS STRICT SUBTYPES                    NO
+   LVS EXACT SUBTYPES                     NO
+   LAYOUT CASE                            NO
+   SOURCE CASE                            NO
+   LVS COMPARE CASE                       NO
+   LVS COMPARE CASE STRICT                NO
+   LVS DOWNCASE DEVICE                    NO
+   LVS REPORT MAXIMUM                     100
+   LVS PROPERTY RESOLUTION MAXIMUM        32
+   // LVS SIGNATURE MAXIMUM
+   LVS FILTER UNUSED OPTION               AB
+   // LVS REPORT OPTION
+   LVS REPORT UNITS                       YES
+   // LVS NON USER NAME PORT
+   // LVS NON USER NAME NET
+   // LVS NON USER NAME INSTANCE
+   // LVS IGNORE DEVICE PIN
+   // LVS PREFER NETS FILTER SOURCE
+   // LVS PREFER NETS FILTER LAYOUT
+   LVS PREFER PORT NETS                   NO
+   LVS EXPAND ON ERROR                    NO
+
+   // Device Type Map
+
+   LVS DEVICE TYPE                        RESISTOR "rnod_m" "rnodrpo_m" "rnodw_m" "rnpo1_dis" "rnpo1rpo_dis" "rnpo1w_dis" "rnwod_m"
+                                                   "rnwsti_m" "rpod_m" "rpodrpo_m" "rpodw_m" "rppo1_dis" "rppo1rpo_dis"
+                                                   "rppo1w_dis" "rppolyhri_dis" "rppolyhri_rf" "rppolyl_rf" "rppolys_rf"
+                                                   "rppolywo_rf" [ POS=PLUS NEG=MINUS ]  SOURCE LAYOUT
+
+   // Reduction
+
+   LVS REDUCE SERIES MOS                  NO
+   LVS REDUCE PARALLEL MOS                YES
+   LVS REDUCE SEMI SERIES MOS             NO
+   LVS REDUCE SPLIT GATES                 NO
+   LVS REDUCE PARALLEL BIPOLAR            YES
+   LVS REDUCE SERIES CAPACITORS           YES
+   LVS REDUCE PARALLEL CAPACITORS         YES
+   LVS REDUCE SERIES RESISTORS            YES
+   LVS REDUCE PARALLEL RESISTORS          YES
+   LVS REDUCE PARALLEL DIODES             YES
+
+   LVS REDUCE  rnod_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnod_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnodrpo_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnodrpo_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnodw_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnodw_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnpo1_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnpo1_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnpo1rpo_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnpo1rpo_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnpo1w_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnpo1w_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnwod_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnwod_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rnwsti_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rnwsti_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rpod_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rpod_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rpodrpo_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rpodrpo_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rpodw_m  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rpodw_m  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rppo1_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rppo1_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rppo1rpo_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rppo1rpo_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rppo1w_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rppo1w_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rppolyhri_dis  PARALLEL [ TOLERANCE lr 0 ]
+   LVS REDUCE  rppolyhri_dis  SERIES PLUS MINUS [ TOLERANCE wr 0 ]
+   LVS REDUCE  rppolyhri_rf  PARALLEL NO
+   LVS REDUCE  rppolyhri_rf  SERIES PLUS MINUS NO
+   LVS REDUCE  rppolyl_rf  PARALLEL NO
+   LVS REDUCE  rppolyl_rf  SERIES PLUS MINUS NO
+   LVS REDUCE  rppolys_rf  PARALLEL NO
+   LVS REDUCE  rppolys_rf  SERIES PLUS MINUS NO
+   LVS REDUCE  rppolywo_rf  PARALLEL NO
+   LVS REDUCE  rppolywo_rf  SERIES PLUS MINUS NO
+   LVS REDUCTION PRIORITY                 PARALLEL
+   
+   LVS SHORT EQUIVALENT NODES             NO
+
+   // Trace Property
+
+   TRACE PROPERTY  mn(n)  l l 0
+   TRACE PROPERTY  mn(n)  w w 0
+   TRACE PROPERTY  mn(n1)  l l 0
+   TRACE PROPERTY  mn(n1)  w w 0
+   TRACE PROPERTY  mn(n2)  l l 0
+   TRACE PROPERTY  mn(n2)  w w 0
+   TRACE PROPERTY  mn(na)  l l 0
+   TRACE PROPERTY  mn(na)  w w 0
+   TRACE PROPERTY  mn(nb)  l l 0
+   TRACE PROPERTY  mn(nb)  w w 0
+   TRACE PROPERTY  mn(nd)  l l 0
+   TRACE PROPERTY  mn(nd)  w w 0
+   TRACE PROPERTY  mn(nl)  l l 0
+   TRACE PROPERTY  mn(nl)  w w 0
+   TRACE PROPERTY  mn(nn)  l l 0
+   TRACE PROPERTY  mn(nn)  w w 0
+   TRACE PROPERTY  mp(p)  l l 0
+   TRACE PROPERTY  mp(p)  w w 0
+   TRACE PROPERTY  mp(pa)  l l 0
+   TRACE PROPERTY  mp(pa)  w w 0
+   TRACE PROPERTY  mp(pd)  l l 0
+   TRACE PROPERTY  mp(pd)  w w 0
+   TRACE PROPERTY  d(d1)  a a 0
+   TRACE PROPERTY  d(d2)  a a 0
+   TRACE PROPERTY  d(d3)  a a 0
+   TRACE PROPERTY  d(db)  a a 0
+   TRACE PROPERTY  d(dn)  a a 0
+   TRACE PROPERTY  d(dp)  a a 0
+   TRACE PROPERTY  d(dw)  a a 0
+   TRACE PROPERTY  d(ndio_3m)  a a 0
+   TRACE PROPERTY  d(ndio_m)  a a 0
+   TRACE PROPERTY  d(pdio_m)  a a 0
+   TRACE PROPERTY  r(lr)  r r 0
+   TRACE PROPERTY  r(m1)  r r 0
+   TRACE PROPERTY  r(m2)  r r 0
+   TRACE PROPERTY  r(m3)  r r 0
+   TRACE PROPERTY  r(m4)  r r 0
+   TRACE PROPERTY  r(m5)  r r 0
+   TRACE PROPERTY  r(nd)  r r 0
+   TRACE PROPERTY  r(ni)  r r 0
+   TRACE PROPERTY  r(nr)  r r 0
+   TRACE PROPERTY  r(ns)  r r 0
+   TRACE PROPERTY  r(pd)  r r 0
+   TRACE PROPERTY  r(pi)  r r 0
+   TRACE PROPERTY  r(pr)  r r 0
+   TRACE PROPERTY  r(ps)  r r 0
+   TRACE PROPERTY  r(mt)  r r 0
+   TRACE PROPERTY  q(nv)  a a 0
+   TRACE PROPERTY  q(nv_mis)  a a 0
+   TRACE PROPERTY  q(p1)  a a 0
+   TRACE PROPERTY  q(pv)  a a 0
+   TRACE PROPERTY  q(pv_mis)  a a 0
+   TRACE PROPERTY  r(wo)  r r 0
+   TRACE PROPERTY  r(wr)  r r 0
+   TRACE PROPERTY  crtmom  nv nv 0
+   TRACE PROPERTY  crtmom  nh nh 0
+   TRACE PROPERTY  crtmom  s s 0
+   TRACE PROPERTY  crtmom  w w 0
+   TRACE PROPERTY  crtmom  stm stm 0
+   TRACE PROPERTY  crtmom  spm spm 0
+   TRACE PROPERTY  cfmom  nr nr 0
+   TRACE PROPERTY  cfmom  s s 0
+   TRACE PROPERTY  cfmom  w w 0
+   TRACE PROPERTY  cfmom  lr lr 0
+   TRACE PROPERTY  cfmom  stm stm 0
+   TRACE PROPERTY  cfmom  spm spm 0
+   TRACE PROPERTY  cfmom_rf  nr nr 0
+   TRACE PROPERTY  cfmom_rf  s s 0
+   TRACE PROPERTY  cfmom_rf  w w 0
+   TRACE PROPERTY  cfmom_rf  lr lr 0
+   TRACE PROPERTY  cfmom_rf  stm stm 0
+   TRACE PROPERTY  cfmom_rf  spm spm 0
+   TRACE PROPERTY  cfmom_mx  nr nr 0
+   TRACE PROPERTY  cfmom_mx  s s 0
+   TRACE PROPERTY  cfmom_mx  w w 0
+   TRACE PROPERTY  cfmom_mx  lr lr 0
+   TRACE PROPERTY  cfmom_mx  stm stm 0
+   TRACE PROPERTY  cfmom_mx  spm spm 0
+   TRACE PROPERTY  mimcap_2p0_shield  lt lt 0
+   TRACE PROPERTY  mimcap_2p0_shield  wt wt 0
+   TRACE PROPERTY  mimcap_2p0_shield  lay lay 0
+   TRACE PROPERTY  mimcap_2p0_sin  lt lt 0
+   TRACE PROPERTY  mimcap_2p0_sin  wt wt 0
+   TRACE PROPERTY  mimcap_2p0_sin_3t  lt lt 0
+   TRACE PROPERTY  mimcap_2p0_sin_3t  wt wt 0
+   TRACE PROPERTY  mimcap_2p0_sin_3t  lay lay 0
+   TRACE PROPERTY  mimcap_2p0_wos  lt lt 0
+   TRACE PROPERTY  mimcap_2p0_wos  wt wt 0
+   TRACE PROPERTY  mimcap_2p0_wos  lay lay 0
+   TRACE PROPERTY  moscap_rf  lr lr 0
+   TRACE PROPERTY  moscap_rf  wr wr 0
+   TRACE PROPERTY  moscap_rf  br br 0
+   TRACE PROPERTY  moscap_rf  gr gr 0
+   TRACE PROPERTY  moscap_rf33  lr lr 0
+   TRACE PROPERTY  moscap_rf33  wr wr 0
+   TRACE PROPERTY  moscap_rf33  br br 0
+   TRACE PROPERTY  moscap_rf33  gr gr 0
+   TRACE PROPERTY  moscap_rf33_nw  lr lr 0
+   TRACE PROPERTY  moscap_rf33_nw  wr wr 0
+   TRACE PROPERTY  moscap_rf33_nw  br br 0
+   TRACE PROPERTY  moscap_rf33_nw  gr gr 0
+   TRACE PROPERTY  moscap_rf_nw  lr lr 0
+   TRACE PROPERTY  moscap_rf_nw  wr wr 0
+   TRACE PROPERTY  moscap_rf_nw  br br 0
+   TRACE PROPERTY  moscap_rf_nw  gr gr 0
+   TRACE PROPERTY  nmos_rf  lr lr 0
+   TRACE PROPERTY  nmos_rf  wr wr 0
+   TRACE PROPERTY  nmos_rf  nr nr 0
+   TRACE PROPERTY  nmos_rf33  lr lr 0
+   TRACE PROPERTY  nmos_rf33  wr wr 0
+   TRACE PROPERTY  nmos_rf33  nr nr 0
+   TRACE PROPERTY  nmos_rf33_6t  wr wr 0
+   TRACE PROPERTY  nmos_rf33_6t  lr lr 0
+   TRACE PROPERTY  nmos_rf33_6t  nr nr 0
+   TRACE PROPERTY  nmos_rf_6t  wr wr 0
+   TRACE PROPERTY  nmos_rf_6t  lr lr 0
+   TRACE PROPERTY  nmos_rf_6t  nr nr 0
+   TRACE PROPERTY  nmoscap  lr lr 0
+   TRACE PROPERTY  nmoscap  wr wr 0
+   TRACE PROPERTY  nmoscap  mr mr 0
+   TRACE PROPERTY  nmoscap_33  lr lr 0
+   TRACE PROPERTY  nmoscap_33  wr wr 0
+   TRACE PROPERTY  nmoscap_33  mr mr 0
+   TRACE PROPERTY  pmos_rf  lr lr 0
+   TRACE PROPERTY  pmos_rf  wr wr 0
+   TRACE PROPERTY  pmos_rf  nr nr 0
+   TRACE PROPERTY  pmos_rf33  lr lr 0
+   TRACE PROPERTY  pmos_rf33  wr wr 0
+   TRACE PROPERTY  pmos_rf33  nr nr 0
+   TRACE PROPERTY  pmos_rf33_5t  wr wr 0
+   TRACE PROPERTY  pmos_rf33_5t  lr lr 0
+   TRACE PROPERTY  pmos_rf33_5t  nr nr 0
+   TRACE PROPERTY  pmos_rf33_nw  lr lr 0
+   TRACE PROPERTY  pmos_rf33_nw  wr wr 0
+   TRACE PROPERTY  pmos_rf33_nw  nr nr 0
+   TRACE PROPERTY  pmos_rf33_nw_5t  wr wr 0
+   TRACE PROPERTY  pmos_rf33_nw_5t  lr lr 0
+   TRACE PROPERTY  pmos_rf33_nw_5t  nr nr 0
+   TRACE PROPERTY  pmos_rf_5t  wr wr 0
+   TRACE PROPERTY  pmos_rf_5t  lr lr 0
+   TRACE PROPERTY  pmos_rf_5t  nr nr 0
+   TRACE PROPERTY  pmos_rf_nw  lr lr 0
+   TRACE PROPERTY  pmos_rf_nw  wr wr 0
+   TRACE PROPERTY  pmos_rf_nw  nr nr 0
+   TRACE PROPERTY  pmos_rf_nw_5t  wr wr 0
+   TRACE PROPERTY  pmos_rf_nw_5t  lr lr 0
+   TRACE PROPERTY  pmos_rf_nw_5t  nr nr 0
+   TRACE PROPERTY  rnod_m  wr wr 0
+   TRACE PROPERTY  rnod_m  lr lr 0
+   TRACE PROPERTY  rnodrpo_m  wr wr 0
+   TRACE PROPERTY  rnodrpo_m  lr lr 0
+   TRACE PROPERTY  rnodw_m  wr wr 0
+   TRACE PROPERTY  rnodw_m  lr lr 0
+   TRACE PROPERTY  rnpo1_dis  wr wr 0
+   TRACE PROPERTY  rnpo1_dis  lr lr 0
+   TRACE PROPERTY  rnpo1rpo_dis  wr wr 0
+   TRACE PROPERTY  rnpo1rpo_dis  lr lr 0
+   TRACE PROPERTY  rnpo1w_dis  wr wr 0
+   TRACE PROPERTY  rnpo1w_dis  lr lr 0
+   TRACE PROPERTY  rnwod_m  wr wr 0
+   TRACE PROPERTY  rnwod_m  lr lr 0
+   TRACE PROPERTY  rnwsti_m  wr wr 0
+   TRACE PROPERTY  rnwsti_m  lr lr 0
+   TRACE PROPERTY  rpod_m  wr wr 0
+   TRACE PROPERTY  rpod_m  lr lr 0
+   TRACE PROPERTY  rpodrpo_m  wr wr 0
+   TRACE PROPERTY  rpodrpo_m  lr lr 0
+   TRACE PROPERTY  rpodw_m  wr wr 0
+   TRACE PROPERTY  rpodw_m  lr lr 0
+   TRACE PROPERTY  rppo1_dis  wr wr 0
+   TRACE PROPERTY  rppo1_dis  lr lr 0
+   TRACE PROPERTY  rppo1rpo_dis  wr wr 0
+   TRACE PROPERTY  rppo1rpo_dis  lr lr 0
+   TRACE PROPERTY  rppo1w_dis  wr wr 0
+   TRACE PROPERTY  rppo1w_dis  lr lr 0
+   TRACE PROPERTY  rppolyhri_dis  wr wr 0
+   TRACE PROPERTY  rppolyhri_dis  lr lr 0
+   TRACE PROPERTY  rppolyhri_rf  w w 0
+   TRACE PROPERTY  rppolyhri_rf  l l 0
+   TRACE PROPERTY  rppolyl_rf  w w 0
+   TRACE PROPERTY  rppolyl_rf  l l 0
+   TRACE PROPERTY  rppolys_rf  w w 0
+   TRACE PROPERTY  rppolys_rf  l l 0
+   TRACE PROPERTY  rppolywo_rf  w w 0
+   TRACE PROPERTY  rppolywo_rf  l l 0
+   TRACE PROPERTY  sbd_rf  nf nf 0
+   TRACE PROPERTY  sbd_rf  w w 0
+   TRACE PROPERTY  sbd_rf  l l 0
+   TRACE PROPERTY  sbd_rf_nw  nf nf 0
+   TRACE PROPERTY  sbd_rf_nw  w w 0
+   TRACE PROPERTY  sbd_rf_nw  l l 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  lay lay 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  w w 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  spacing spacing 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  nr nr 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  rad rad 0
+   TRACE PROPERTY  spiral_std_mu_x_40k  gdis gdis 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  lay lay 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  w w 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  spacing spacing 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  nr nr 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  rad rad 0
+   TRACE PROPERTY  spiral_sym_ct_mu_x_40k  gdis gdis 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  lay lay 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  w w 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  spacing spacing 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  nr nr 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  rad rad 0
+   TRACE PROPERTY  spiral_sym_mu_x_40k  gdis gdis 0
+   TRACE PROPERTY  xjvar_nr36  nr nr 0
+   TRACE PROPERTY  xjvar_nr36  w w 0
+   TRACE PROPERTY  xjvar_w40  nr nr 0
+   TRACE PROPERTY  xjvar_w40  w w 0
+
+
+
+**************************************************************************************************************
+                               INFORMATION AND WARNINGS
+**************************************************************************************************************
+
+
+o Component types with non-identical power or ground pins:
+
+      (Cells with the same ( or corresponding ) name that have different voltage
+       pin names are listed below.  Pins that do not appear in all corresponding
+       cells in both source and layout are ignored by the comparison algorithm.)
+
+Layout Component Type:  PDDW1216CDG (12 pins): vsspst vss vddpst pad i oen ds pe ie c vdd poc
+Extra Pins:  VSSPST VSS VDDPST VDD POC
+Source Component Type:  PDDW1216CDG (7 pins): c pad ds i ie oen pe
+
+
+
+**************************************************************************************************************
+                               INFORMATION AND WARNINGS
+**************************************************************************************************************
+
+
+o Component types with non-identical power or ground pins:
+
+      (Cells with the same ( or corresponding ) name that have different voltage
+       pin names are listed below.  Pins that do not appear in all corresponding
+       cells in both source and layout are ignored by the comparison algorithm.)
+
+Layout Component Type:  PVDD1CDG (5 pins): vsspst vss vdd vddpst poc
+Extra Pins:  VSSPST VSS VDDPST POC
+Source Component Type:  PVDD1CDG (1 pins): vdd
+
+
+
+**************************************************************************************************************
+                               INFORMATION AND WARNINGS
+**************************************************************************************************************
+
+
+o Component types with non-identical power or ground pins:
+
+      (Cells with the same ( or corresponding ) name that have different voltage
+       pin names are listed below.  Pins that do not appear in all corresponding
+       cells in both source and layout are ignored by the comparison algorithm.)
+
+Layout Component Type:  PVDD2CDG (5 pins): vsspst vss vddpst vdd poc
+Extra Pins:  VSSPST VSS VDD POC
+Source Component Type:  PVDD2CDG (1 pins): vddpst
+
+
+
+**************************************************************************************************************
+                               INFORMATION AND WARNINGS
+**************************************************************************************************************
+
+
+o Component types with non-identical power or ground pins:
+
+      (Cells with the same ( or corresponding ) name that have different voltage
+       pin names are listed below.  Pins that do not appear in all corresponding
+       cells in both source and layout are ignored by the comparison algorithm.)
+
+Layout Component Type:  PVDD2POC (5 pins): vsspst vss vddpst vdd poc
+Extra Pins:  VSSPST VSS VDD POC
+Source Component Type:  PVDD2POC (1 pins): vddpst
+
+
+
+                   CELL COMPARISON RESULTS ( TOP LEVEL )
+
+
+
+                         #       ###################       _   _   
+                        #        #                 #       *   *   
+                   #   #         #     CORRECT     #         |     
+                    # #          #                 #       \___/  
+                     #           ###################               
+
+
+  Warning:  Unbalanced smashed mosfets were matched.
+  Warning:  Ambiguity points were found and resolved arbitrarily.
+  Warning:  LVS property resolution maximum exceeded.
+
+LAYOUT CELL NAME:         chip_top
+SOURCE CELL NAME:         chip_top
+
+--------------------------------------------------------------------------------------------------------------
+
+INITIAL NUMBERS OF OBJECTS
+--------------------------
+
+                Layout    Source         Component Type
+                ------    ------         --------------
+ Ports:             52        53    *
+
+ Nets:          530427    530383    *
+
+ Instances:     518692    516963    *    MN (4 pins)
+                519405    517105    *    MP (4 pins)
+                   375       247    *    D (2 pins)
+                    48        48         PDDW1216CDG (7 pins)
+                     4         4         PVDD1CDG (1 pins)
+                     3         3         PVDD2CDG (1 pins)
+                     1         1         PVDD2POC (1 pins)
+                ------    ------
+ Total Inst:   1038528   1034371
+
+
+NUMBERS OF OBJECTS AFTER TRANSFORMATION
+---------------------------------------
+
+                Layout    Source         Component Type
+                ------    ------         --------------
+ Ports:             52        52
+
+ Nets:          313246    313246
+
+ Instances:      40132     40132         MN (4 pins)
+                 40574     40574         MP (4 pins)
+                    62        62         D (2 pins)
+                    48        48         PDDW1216CDG (7 pins)
+                     4         4         PVDD1CDG (1 pins)
+                     3         3         PVDD2CDG (1 pins)
+                     1         1         PVDD2POC (1 pins)
+                 39940     39940         _invb (6 pins)
+                162157    162157         _invv (4 pins)
+                  5456      5456         _invx2v (4 pins)
+                   151       151         _invx3v (4 pins)
+                    22        22         _invx4v (4 pins)
+                    38        38         _invx5v (4 pins)
+                     2         2         _mx2v (6 pins)
+                 16684     16684         _nand2b (7 pins)
+                  4956      4956         _nand2v (5 pins)
+                    21        21         _nand3b (8 pins)
+                   360       360         _nand3v (6 pins)
+                  3989      3989         _nand4v (7 pins)
+                  2274      2274         _nor2b (7 pins)
+                  1683      1683         _nor2v (5 pins)
+                    21        21         _nor3b (8 pins)
+                   185       185         _nor3v (6 pins)
+                   726       726         _nor4v (7 pins)
+                   165       165         _pdw2v (4 pins)
+                    18        18         _pdw3v (5 pins)
+                    33        33         _pmn2b (5 pins)
+                   733       733         _pmp2b (5 pins)
+                 16043     16043         _pup2v (4 pins)
+                 61674     61674         _sdw2v (4 pins)
+                   136       136         _sdw3v (5 pins)
+                 31574     31574         _smn2b (5 pins)
+                 31538     31538         _smp2b (5 pins)
+                 45114     45114         _sup2v (4 pins)
+                    35        35         _sup3v (5 pins)
+                     7         7         _tgmb (7 pins)
+                ------    ------
+ Total Inst:    506559    506559
+
+
+       * = Number of objects in layout different from number in source.
+
+
+
+**************************************************************************************************************
+                               INFORMATION AND WARNINGS
+**************************************************************************************************************
+
+
+                  Matched    Matched    Unmatched    Unmatched    Component
+                   Layout     Source       Layout       Source    Type
+                  -------    -------    ---------    ---------    ---------
+   Ports:              52         52            0            0
+
+   Nets:           313246     313246            0            0
+
+   Instances:       40132      40132            0            0    MN(N)
+                    40574      40574            0            0    MP(P)
+                        2          2            0            0    D(D1)
+                       59         59            0            0    D(DN)
+                        1          1            0            0    D(DP)
+                       48         48            0            0    PDDW1216CDG
+                        4          4            0            0    PVDD1CDG
+                        3          3            0            0    PVDD2CDG
+                        1          1            0            0    PVDD2POC
+                    39940      39940            0            0    _invb
+                   162157     162157            0            0    _invv
+                     5456       5456            0            0    _invx2v
+                      151        151            0            0    _invx3v
+                       22         22            0            0    _invx4v
+                       38         38            0            0    _invx5v
+                        2          2            0            0    _mx2v
+                    16684      16684            0            0    _nand2b
+                     4956       4956            0            0    _nand2v
+                       21         21            0            0    _nand3b
+                      360        360            0            0    _nand3v
+                     3989       3989            0            0    _nand4v
+                     2274       2274            0            0    _nor2b
+                     1683       1683            0            0    _nor2v
+                       21         21            0            0    _nor3b
+                      185        185            0            0    _nor3v
+                      726        726            0            0    _nor4v
+                      165        165            0            0    _pdw2v
+                       18         18            0            0    _pdw3v
+                       33         33            0            0    _pmn2b
+                      733        733            0            0    _pmp2b
+                    16043      16043            0            0    _pup2v
+                    61674      61674            0            0    _sdw2v
+                      136        136            0            0    _sdw3v
+                    31574      31574            0            0    _smn2b
+                    31538      31538            0            0    _smp2b
+                    45114      45114            0            0    _sup2v
+                       35         35            0            0    _sup3v
+                        7          7            0            0    _tgmb
+                  -------    -------    ---------    ---------
+   Total Inst:     506559     506559            0            0
+
+
+o Statistics:
+
+   30 isolated layout nets were deleted.
+
+   1 passthrough source net was deleted.
+
+   22903 layout mos transistors were reduced to 10977.
+     11926 mos transistors were deleted by parallel reduction.
+   15199 source mos transistors were reduced to 7302.
+     7897 mos transistors were deleted by parallel reduction.
+
+   357 parallel layout diodes were reduced to 44.
+   229 parallel source diodes were reduced to 44.
+
+   15 layout nets had all their pins removed and were deleted.
+
+   950 nets and 101 instances were matched arbitrarily.
+
+
+o Initial Correspondence Points:
+
+   Ports:        VDDPST VDD VSSPST VSS PAD[47] PAD[23] PAD[46] PAD[22] PAD[45] PAD[21] PAD[44]
+                 PAD[20] PAD[41] PAD[17] PAD[37] PAD[13] PAD[36] PAD[12] PAD[43] PAD[42] PAD[40]
+                 PAD[39] PAD[38] PAD[0] PAD[1] PAD[2] PAD[3] PAD[4] PAD[5] PAD[6] PAD[7] PAD[8]
+                 PAD[9] PAD[10] PAD[11] PAD[19] PAD[18] PAD[16] PAD[15] PAD[14] PAD[24] PAD[25]
+                 PAD[26] PAD[27] PAD[28] PAD[29] PAD[30] PAD[31] PAD[32] PAD[33] PAD[34] PAD[35]
+
+
+o Ambiguity Resolution Points:
+
+      (Each one of the following objects belongs to a group of indistinguishable objects.
+       The listed objects were matched arbitrarily by the Ambiguity Resolution feature of LVS.
+       Arbitrary matching may be prevented by assigning names to these objects or to adjacent nets).
+
+       Layout                                                    Source
+       ------                                                    ------
+
+                                     Nets
+                                     ----
+
+       X56/X4289/4                                               XDECAP_AO_8/net6
+       X56/X4288/4                                               XDECAP_AO_9/net6
+       X56/X4287/4                                               XDECAP_AO_11/net6
+       X56/X4286/4                                               XDECAP_AO_12/net6
+       X56/X4285/4                                               XDECAP_AO_13/net6
+       X56/X4284/4                                               XDECAP_AO_14/net6
+       X56/X4283/4                                               XDECAP_AO_16/net6
+       X56/X4282/4                                               XDECAP_AO_17/net6
+       X56/X4281/4                                               XDECAP_AO_18/net6
+       X56/X4280/4                                               XDECAP_AO_19/net6
+       X56/X4279/4                                               XDECAP_AO_20/net6
+       X56/X4278/4                                               XDECAP_AO_22/net6
+       X56/X4277/4                                               XDECAP_AO_23/net6
+       X56/X4276/4                                               XDECAP_AO_24/net6
+       X56/X4275/4                                               XDECAP_AO_25/net6
+       X56/X4274/4                                               XDECAP_AO_26/net6
+       X56/X4273/4                                               XDECAP_AO_27/net6
+       X56/X4272/4                                               XDECAP_AO_28/net6
+       X56/X4271/4                                               XDECAP_AO_29/net6
+       X56/X4270/4                                               XDECAP_AO_30/net6
+       X56/X4269/4                                               XDECAP_AO_31/net6
+       X56/X4268/4                                               XDECAP_AO_32/net6
+       X56/X4267/4                                               XDECAP_AO_33/net6
+       X56/X4266/4                                               XDECAP_AO_34/net6
+       X56/X4265/4                                               XDECAP_AO_35/net6
+       X56/X4264/4                                               XDECAP_AO_36/net6
+       X56/X4263/4                                               XDECAP_AO_37/net6
+       X56/X4262/4                                               XDECAP_AO_38/net6
+       X56/X4261/4                                               XDECAP_AO_39/net6
+       X56/X4260/4                                               XDECAP_AO_40/net6
+       X56/X4259/4                                               XDECAP_AO_41/net6
+       X56/X4258/4                                               XDECAP_AO_42/net6
+       X56/X4257/4                                               XDECAP_AO_43/net6
+       X56/X4256/4                                               XDECAP_AO_44/net6
+       X56/X4255/4                                               XDECAP_AO_45/net6
+       X56/X4254/4                                               XDECAP_AO_46/net6
+       X56/X4253/4                                               XDECAP_AO_47/net6
+       X56/X4252/4                                               XDECAP_AO_48/net6
+       X56/X4251/4                                               XDECAP_AO_49/net6
+       X56/X4250/4                                               XDECAP_AO_50/net6
+       X56/X4249/4                                               XDECAP_AO_51/net6
+       X56/X4248/4                                               XDECAP_AO_52/net6
+       X56/X4247/4                                               XDECAP_AO_53/net6
+       X56/X4246/4                                               XDECAP_AO_54/net6
+       X56/X4245/4                                               XDECAP_AO_55/net6
+       X56/X4244/4                                               XDECAP_AO_56/net6
+       X56/X4243/4                                               XDECAP_AO_57/net6
+       X56/X4242/4                                               XDECAP_AO_58/net6
+       X56/X4241/4                                               XDECAP_AO_59/net6
+       X56/X4240/4                                               XDECAP_AO_60/net6
+       X56/X4239/4                                               XDECAP_AO_61/net6
+       X56/X4238/4                                               XDECAP_AO_62/net6
+       X56/X4237/4                                               XDECAP_AO_63/net6
+       X56/X4236/4                                               XDECAP_AO_64/net6
+       X56/X4235/4                                               XDECAP_AO_65/net6
+       X56/X4234/4                                               XDECAP_AO_66/net6
+       X56/X4233/4                                               XDECAP_AO_67/net6
+       X56/X4232/4                                               XDECAP_AO_68/net6
+       X56/X4231/4                                               XDECAP_AO_69/net6
+       X56/X4230/4                                               XDECAP_AO_70/net6
+       X56/X4229/4                                               XDECAP_AO_71/net6
+       X56/X4228/4                                               XDECAP_AO_72/net6
+       X56/X4227/4                                               XDECAP_AO_73/net6
+       X56/X4226/4                                               XDECAP_AO_74/net6
+       X56/X4225/4                                               XDECAP_AO_75/net6
+       X56/X4224/4                                               XDECAP_AO_78/net6
+       X56/X4223/4                                               XDECAP_AO_79/net6
+       X56/X4222/4                                               XDECAP_AO_80/net6
+       X56/X4221/4                                               XDECAP_AO_81/net6
+       X56/X4220/4                                               XDECAP_AO_82/net6
+       X56/X4219/4                                               XDECAP_AO_83/net6
+       X56/X4218/4                                               XDECAP_AO_84/net6
+       X56/X4217/4                                               XDECAP_AO_85/net6
+       X56/X4216/4                                               XDECAP_AO_86/net6
+       X56/X4215/4                                               XDECAP_AO_87/net6
+       X56/X4214/4                                               XDECAP_AO_88/net6
+       X56/X4213/4                                               XDECAP_AO_89/net6
+       X56/X4212/4                                               XDECAP_AO_90/net6
+       X56/X4211/4                                               XDECAP_AO_91/net6
+       X56/X4210/4                                               XDECAP_AO_93/net6
+       X56/X4209/4                                               XDECAP_AO_94/net6
+       X56/X4208/4                                               XDECAP_AO_95/net6
+       X56/X4207/4                                               XDECAP_AO_96/net6
+       X56/X4206/4                                               XDECAP_AO_97/net6
+       X56/X4205/4                                               XDECAP_AO_98/net6
+       X56/X4204/4                                               XDECAP_AO_99/net6
+       X56/X4203/4                                               XDECAP_AO_100/net6
+       X55/X3227/4                                               XDECAP_AO_101/net6
+       X55/X3226/4                                               XDECAP_AO_102/net6
+       X55/X3225/4                                               XDECAP_AO_103/net6
+       X55/X3224/4                                               XDECAP_AO_104/net6
+       X55/X3223/4                                               XDECAP_AO_105/net6
+       X55/X3222/4                                               XDECAP_AO_106/net6
+       X55/X3221/4                                               XDECAP_AO_107/net6
+       X55/X3220/4                                               XDECAP_AO_108/net6
+       X55/X3219/4                                               XDECAP_AO_109/net6
+       X55/X3218/4                                               XDECAP_AO_110/net6
+       X55/X3217/4                                               XDECAP_AO_111/net6
+       X55/X3216/4                                               XDECAP_AO_112/net6
+       X55/X3215/4                                               XDECAP_AO_113/net6
+
+
+                                   Instances
+                                   ---------
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X52/X7683/M5(674.170,706.450)  MP(P)                      Xu_ctrl_top/g4550/M_u1  MP(P) 
+         X52/X7683/M6(673.620,706.450)  MP(P)                      Xu_ctrl_top/g4550/MI1  MP(P) 
+         X52/X7683/M7(673.070,706.450)  MP(P)                      Xu_ctrl_top/g4550/MI2  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X52/X7684/M5(676.970,701.790)  MP(P)                      Xu_ctrl_top/g7012/M_u1  MP(P) 
+         X52/X7684/M6(676.420,701.790)  MP(P)                      Xu_ctrl_top/g7012/MI1  MP(P) 
+         X52/X7684/M7(675.870,701.790)  MP(P)                      Xu_ctrl_top/g7012/MI2  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X54/X6222/M3(741.160,419.675)  MP(P)                      Xu_ctrl_top/u_abuf/g94434/M_u1_0  MP(P) 
+         X54/X6222/M4(741.750,419.675)  MP(P)                      Xu_ctrl_top/u_abuf/g94434/MI0_0  MP(P) 
+         X54/X6222/M5(742.340,419.675)  MP(P)                      Xu_ctrl_top/u_abuf/g94434/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X49/X6541/M3(1190.840,984.155)  MP(P)                     Xu_ctrl_top/u_iram/g918624/M_u1_0  MP(P) 
+         X49/X6541/M4(1191.430,984.155)  MP(P)                     Xu_ctrl_top/u_iram/g918624/MI0_0  MP(P) 
+         X49/X6541/M5(1192.020,984.155)  MP(P)                     Xu_ctrl_top/u_iram/g918624/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X48/X6565/M5(589.030,1082.770)  MP(P)                     Xu_ctrl_top/u_serv/cpu/state/g884/M_u1  MP(P) 
+         X48/X6565/M6(589.580,1082.770)  MP(P)                     Xu_ctrl_top/u_serv/cpu/state/g884/MI1  MP(P) 
+         X48/X6565/M7(590.130,1082.770)  MP(P)                     Xu_ctrl_top/u_serv/cpu/state/g884/MI2  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X48/X5993/M3(1544.040,1082.645)  MP(P)                    Xu_ctrl_top/u_iram/g889534/M_u1_0  MP(P) 
+         X48/X5993/M4(1543.450,1082.645)  MP(P)                    Xu_ctrl_top/u_iram/g889534/MI0_0  MP(P) 
+         X48/X5993/M5(1542.860,1082.645)  MP(P)                    Xu_ctrl_top/u_iram/g889534/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X53/X6357/M3(1214.920,513.755)  MP(P)                     Xu_ctrl_top/u_iram/g889461/M_u1_0  MP(P) 
+         X53/X6357/M4(1215.510,513.755)  MP(P)                     Xu_ctrl_top/u_iram/g889461/MI0_0  MP(P) 
+         X53/X6357/M5(1216.100,513.755)  MP(P)                     Xu_ctrl_top/u_iram/g889461/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X50/X6063/M3(1222.760,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889549/M_u1_0  MP(P) 
+         X50/X6063/M4(1223.350,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889549/MI0_0  MP(P) 
+         X50/X6063/M5(1223.940,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889549/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X49/X6542/M3(1585.480,1015.515)  MP(P)                    Xu_ctrl_top/u_iram/g889468/M_u1_0  MP(P) 
+         X49/X6542/M4(1584.890,1015.515)  MP(P)                    Xu_ctrl_top/u_iram/g889468/MI0_0  MP(P) 
+         X49/X6542/M5(1584.300,1015.515)  MP(P)                    Xu_ctrl_top/u_iram/g889468/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X53/X6358/M3(1238.440,576.475)  MP(P)                     Xu_ctrl_top/u_iram/g889535/M_u1_0  MP(P) 
+         X53/X6358/M4(1239.030,576.475)  MP(P)                     Xu_ctrl_top/u_iram/g889535/MI0_0  MP(P) 
+         X53/X6358/M5(1239.620,576.475)  MP(P)                     Xu_ctrl_top/u_iram/g889535/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X53/X6359/M3(1315.720,568.635)  MP(P)                     Xu_ctrl_top/u_iram/g889507/M_u1_0  MP(P) 
+         X53/X6359/M4(1316.310,568.635)  MP(P)                     Xu_ctrl_top/u_iram/g889507/MI0_0  MP(P) 
+         X53/X6359/M5(1316.900,568.635)  MP(P)                     Xu_ctrl_top/u_iram/g889507/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X53/X6360/M3(1681.800,502.485)  MP(P)                     Xu_ctrl_top/u_iram/g889449/M_u1_0  MP(P) 
+         X53/X6360/M4(1681.210,502.485)  MP(P)                     Xu_ctrl_top/u_iram/g889449/MI0_0  MP(P) 
+         X53/X6360/M5(1680.620,502.485)  MP(P)                     Xu_ctrl_top/u_iram/g889449/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X51/X6274/M3(1162.280,714.165)  MP(P)                     Xu_ctrl_top/u_iram/g889469/M_u1_0  MP(P) 
+         X51/X6274/M4(1162.870,714.165)  MP(P)                     Xu_ctrl_top/u_iram/g889469/MI0_0  MP(P) 
+         X51/X6274/M5(1163.460,714.165)  MP(P)                     Xu_ctrl_top/u_iram/g889469/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X50/X6064/M3(1229.480,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889561/M_u1_0  MP(P) 
+         X50/X6064/M4(1230.070,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889561/MI0_0  MP(P) 
+         X50/X6064/M5(1230.660,929.275)  MP(P)                     Xu_ctrl_top/u_iram/g889561/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X44/X6587/M3(1406.440,1631.445)  MP(P)                    Xu_ctrl_top/u_iram/g889488/M_u1_0  MP(P) 
+         X44/X6587/M4(1407.030,1631.445)  MP(P)                    Xu_ctrl_top/u_iram/g889488/MI0_0  MP(P) 
+         X44/X6587/M5(1407.620,1631.445)  MP(P)                    Xu_ctrl_top/u_iram/g889488/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X45/X6425/M3(1553.560,1485.915)  MP(P)                    Xu_ctrl_top/u_iram/g889552/M_u1_0  MP(P) 
+         X45/X6425/M4(1552.970,1485.915)  MP(P)                    Xu_ctrl_top/u_iram/g889552/MI0_0  MP(P) 
+         X45/X6425/M5(1552.380,1485.915)  MP(P)                    Xu_ctrl_top/u_iram/g889552/MI1_0  MP(P) 
+
+       (_sup3v)                                                  (_sup3v)
+       Devices: 
+         X51/X6275/M3(1480.920,717.595)  MP(P)                     Xu_ctrl_top/u_iram/g889527/M_u1_0  MP(P) 
+         X51/X6275/M4(1481.510,717.595)  MP(P)                     Xu_ctrl_top/u_iram/g889527/MI0_0  MP(P) 
+         X51/X6275/M5(1482.100,717.595)  MP(P)                     Xu_ctrl_top/u_iram/g889527/MI1_0  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7525/M6(389.200,592.155)  MP(P)                      Xu_ctrl_top/u_dram/g26268/MU1_0-M_u1  MP(P) 
+         X52/X7525/M7(389.920,592.155)  MP(P)                      Xu_ctrl_top/u_dram/g26268/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6505/M6(621.040,870.965)  MP(P)                      Xu_ctrl_top/u_cbuf/g14346/MU1_0-M_u1  MP(P) 
+         X50/X6505/M7(621.760,870.965)  MP(P)                      Xu_ctrl_top/u_cbuf/g14346/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X53/X7143/M6(329.120,533.845)  MP(P)                      Xu_ctrl_top/u_dram/g26286/MU1_0-M_u1  MP(P) 
+         X53/X7143/M7(328.400,533.845)  MP(P)                      Xu_ctrl_top/u_dram/g26286/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7524/M6(361.200,662.715)  MP(P)                      Xu_ctrl_top/u_dram/g26273/MU1_0-M_u1  MP(P) 
+         X52/X7524/M7(361.920,662.715)  MP(P)                      Xu_ctrl_top/u_dram/g26273/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7522/M6(334.720,599.995)  MP(P)                      Xu_ctrl_top/u_dram/g26265/MU1_0-M_u1  MP(P) 
+         X52/X7522/M7(334.000,599.995)  MP(P)                      Xu_ctrl_top/u_dram/g26265/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7529/M6(477.120,654.875)  MP(P)                      Xu_ctrl_top/u_dram/g26298/MU1_0-M_u1  MP(P) 
+         X52/X7529/M7(477.840,654.875)  MP(P)                      Xu_ctrl_top/u_dram/g26298/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6511/M6(636.000,882.235)  MP(P)                      Xu_ctrl_top/u_cbuf/g14436/MU1_0-M_u1  MP(P) 
+         X50/X6511/M7(635.280,882.235)  MP(P)                      Xu_ctrl_top/u_cbuf/g14436/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7526/M6(417.760,662.715)  MP(P)                      Xu_ctrl_top/u_dram/g26274/MU1_0-M_u1  MP(P) 
+         X52/X7526/M7(418.480,662.715)  MP(P)                      Xu_ctrl_top/u_dram/g26274/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X46/X7206/M6(547.520,1317.845)  MP(P)                     Xu_bsg_link_wrapper/link_rx_i/sipo.in_sipof/fifos[0].twofifo.fifo/mem_1r1w/synth/g230__6260/MU1_0-M_u1  MP(P) 
+         X46/X7206/M7(546.800,1317.845)  MP(P)                     Xu_bsg_link_wrapper/link_rx_i/sipo.in_sipof/fifos[0].twofifo.fifo/mem_1r1w/synth/g230__6260/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6513/M6(635.600,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14443/MU1_0-M_u1  MP(P) 
+         X50/X6513/M7(636.320,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14443/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X44/M4(439.620,1663.145)  MP(P)                           Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/baf/MSYNC_1r1w/synth/g24300__7410/MI6  MP(P) 
+         X44/M5(440.480,1663.145)  MP(P)                           Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/baf/MSYNC_1r1w/synth/g24300__7410/MI7  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X55/X3721/M6(734.000,294.235)  MP(P)                      Xu_ctrl_top/u_abuf/g94397/MU1_0-M_u1  MP(P) 
+         X55/X3721/M7(733.280,294.235)  MP(P)                      Xu_ctrl_top/u_abuf/g94397/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X54/X7085/M6(199.920,377.045)  MP(P)                      Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2207/MU1_0-M_u1  MP(P) 
+         X54/X7085/M7(200.640,377.045)  MP(P)                      Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2207/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6508/M6(632.640,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14442/MU1_0-M_u1  MP(P) 
+         X50/X6508/M7(631.920,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14442/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7528/M6(476.560,615.675)  MP(P)                      Xu_ctrl_top/u_dram/g26260/MU1_0-M_u1  MP(P) 
+         X52/X7528/M7(477.280,615.675)  MP(P)                      Xu_ctrl_top/u_dram/g26260/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6514/M6(643.280,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14446/MU1_0-M_u1  MP(P) 
+         X50/X6514/M7(642.560,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14446/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6510/M6(635.440,878.805)  MP(P)                      Xu_ctrl_top/u_cbuf/g14440/MU1_0-M_u1  MP(P) 
+         X50/X6510/M7(634.720,878.805)  MP(P)                      Xu_ctrl_top/u_cbuf/g14440/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X54/X7084/M6(197.120,380.475)  MP(P)                      Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2204/MU1_0-M_u1  MP(P) 
+         X54/X7084/M7(197.840,380.475)  MP(P)                      Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2204/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X55/X3720/M6(731.760,298.645)  MP(P)                      Xu_ctrl_top/u_abuf/g94395/MU1_0-M_u1  MP(P) 
+         X55/X3720/M7(731.040,298.645)  MP(P)                      Xu_ctrl_top/u_abuf/g94395/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7527/M6(428.240,615.675)  MP(P)                      Xu_ctrl_top/u_dram/g26259/MU1_0-M_u1  MP(P) 
+         X52/X7527/M7(427.520,615.675)  MP(P)                      Xu_ctrl_top/u_dram/g26259/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6512/M6(636.000,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14445/MU1_0-M_u1  MP(P) 
+         X50/X6512/M7(635.280,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14445/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6507/M6(629.280,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14438/MU1_0-M_u1  MP(P) 
+         X50/X6507/M7(628.560,894.485)  MP(P)                      Xu_ctrl_top/u_cbuf/g14438/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6509/M6(634.320,874.395)  MP(P)                      Xu_ctrl_top/u_cbuf/g14435/MU1_0-M_u1  MP(P) 
+         X50/X6509/M7(633.600,874.395)  MP(P)                      Xu_ctrl_top/u_cbuf/g14435/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6503/M6(616.000,902.325)  MP(P)                      Xu_ctrl_top/u_cbuf/g14393/MU1_0-M_u1  MP(P) 
+         X50/X6503/M7(616.720,902.325)  MP(P)                      Xu_ctrl_top/u_cbuf/g14393/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6506/M6(627.600,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14447/MU1_0-M_u1  MP(P) 
+         X50/X6506/M7(626.880,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14447/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6502/M6(613.200,874.395)  MP(P)                      Xu_ctrl_top/u_cbuf/g14355/MU1_0-M_u1  MP(P) 
+         X50/X6502/M7(613.920,874.395)  MP(P)                      Xu_ctrl_top/u_cbuf/g14355/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X52/X7523/M6(333.200,607.835)  MP(P)                      Xu_ctrl_top/u_dram/g26277/MU1_0-M_u1  MP(P) 
+         X52/X7523/M7(333.920,607.835)  MP(P)                      Xu_ctrl_top/u_dram/g26277/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X50/X6504/M6(620.480,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14352/MU1_0-M_u1  MP(P) 
+         X50/X6504/M7(621.200,897.915)  MP(P)                      Xu_ctrl_top/u_cbuf/g14352/MU1_0-M_u2  MP(P) 
+
+       (_sup2v)                                                  (_sup2v)
+       Devices: 
+         X48/X6331/M6(598.480,1093.915)  MP(P)                     Xu_ctrl_top/u_serv/cpu/state/g873/MU1_0-M_u1  MP(P) 
+         X48/X6331/M7(597.760,1093.915)  MP(P)                     Xu_ctrl_top/u_serv/cpu/state/g873/MU1_0-M_u2  MP(P) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X54/X6628/M0(1383.280,460.735)  MN(N)                     Xu_ctrl_top/u_iram/g917543/M_u2_0-M_u4  MN(N) 
+         X54/X6628/M1(1382.560,460.735)  MN(N)                     Xu_ctrl_top/u_iram/g917543/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6585/M0(1041.920,813.535)  MN(N)                     Xu_ctrl_top/u_iram/g918526/M_u2_0-M_u4  MN(N) 
+         X51/X6585/M1(1042.640,813.535)  MN(N)                     Xu_ctrl_top/u_iram/g918526/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X49/X6818/M0(956.000,1049.425)  MN(N)                     Xu_ctrl_top/u_iram/g917523/M_u2_0-M_u4  MN(N) 
+         X49/X6818/M1(955.280,1049.425)  MN(N)                     Xu_ctrl_top/u_iram/g917523/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X49/X6817/M0(955.440,1001.695)  MN(N)                     Xu_ctrl_top/u_iram/g917369/M_u2_0-M_u4  MN(N) 
+         X49/X6817/M1(954.720,1001.695)  MN(N)                     Xu_ctrl_top/u_iram/g917369/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X6914/M0(1518.800,1362.335)  MN(N)                    Xu_ctrl_top/u_iram/g917378/M_u2_0-M_u4  MN(N) 
+         X46/X6914/M1(1518.080,1362.335)  MN(N)                    Xu_ctrl_top/u_iram/g917378/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X6916/M0(1560.240,1432.895)  MN(N)                    Xu_ctrl_top/u_iram/g917375/M_u2_0-M_u4  MN(N) 
+         X46/X6916/M1(1559.520,1432.895)  MN(N)                    Xu_ctrl_top/u_iram/g917375/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6142/M0(889.920,1174.175)  MN(N)                     Xu_ctrl_top/u_iram/g917366/M_u2_0-M_u4  MN(N) 
+         X48/X6142/M1(889.200,1174.175)  MN(N)                     Xu_ctrl_top/u_iram/g917366/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X54/X6627/M0(1375.440,422.225)  MN(N)                     Xu_ctrl_top/u_iram/g917478/M_u2_0-M_u4  MN(N) 
+         X54/X6627/M1(1374.720,422.225)  MN(N)                     Xu_ctrl_top/u_iram/g917478/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X6915/M0(1542.000,1363.025)  MN(N)                    Xu_ctrl_top/u_iram/g917380/M_u2_0-M_u4  MN(N) 
+         X46/X6915/M1(1542.720,1363.025)  MN(N)                    Xu_ctrl_top/u_iram/g917380/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6144/M0(939.440,1182.705)  MN(N)                     Xu_ctrl_top/u_iram/g917379/M_u2_0-M_u4  MN(N) 
+         X48/X6144/M1(940.160,1182.705)  MN(N)                     Xu_ctrl_top/u_iram/g917379/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X52/X7724/M1(475.940,657.425)  MN(N)                      Xu_ctrl_top/u_dram/g26319/MI11  MN(N) 
+         X52/X7724/M2(476.580,657.425)  MN(N)                      Xu_ctrl_top/u_dram/g26319/MI10  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6858/M0(1500.560,1261.105)  MN(N)                    Xu_ctrl_top/u_iram/g917533/M_u2_0-M_u4  MN(N) 
+         X47/X6858/M1(1501.280,1261.105)  MN(N)                    Xu_ctrl_top/u_iram/g917533/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6587/M0(1156.720,790.015)  MN(N)                     Xu_ctrl_top/u_iram/g917590/M_u2_0-M_u4  MN(N) 
+         X51/X6587/M1(1157.440,790.015)  MN(N)                     Xu_ctrl_top/u_iram/g917590/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6855/M0(996.560,1308.145)  MN(N)                     Xu_ctrl_top/u_iram/g917603/M_u2_0-M_u4  MN(N) 
+         X47/X6855/M1(997.280,1308.145)  MN(N)                     Xu_ctrl_top/u_iram/g917603/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6143/M0(898.320,1088.625)  MN(N)                     Xu_ctrl_top/u_iram/g917456/M_u2_0-M_u4  MN(N) 
+         X48/X6143/M1(897.600,1088.625)  MN(N)                     Xu_ctrl_top/u_iram/g917456/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6857/M0(1391.120,1236.895)  MN(N)                    Xu_ctrl_top/u_iram/g917367/M_u2_0-M_u4  MN(N) 
+         X47/X6857/M1(1390.400,1236.895)  MN(N)                    Xu_ctrl_top/u_iram/g917367/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6856/M0(1377.680,1244.735)  MN(N)                    Xu_ctrl_top/u_iram/g917589/M_u2_0-M_u4  MN(N) 
+         X47/X6856/M1(1376.960,1244.735)  MN(N)                    Xu_ctrl_top/u_iram/g917589/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6586/M0(1085.920,720.145)  MN(N)                     Xu_ctrl_top/u_iram/g917535/M_u2_0-M_u4  MN(N) 
+         X51/X6586/M1(1085.200,720.145)  MN(N)                     Xu_ctrl_top/u_iram/g917535/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6146/M0(1364.240,1127.135)  MN(N)                    Xu_ctrl_top/u_iram/g917350/M_u2_0-M_u4  MN(N) 
+         X48/X6146/M1(1363.520,1127.135)  MN(N)                    Xu_ctrl_top/u_iram/g917350/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X53/X6688/M0(1402.880,516.305)  MN(N)                     Xu_ctrl_top/u_iram/g917471/M_u2_0-M_u4  MN(N) 
+         X53/X6688/M1(1402.160,516.305)  MN(N)                     Xu_ctrl_top/u_iram/g917471/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X45/X6798/M0(999.680,1488.465)  MN(N)                     Xu_ctrl_top/u_iram/g917332/M_u2_0-M_u4  MN(N) 
+         X45/X6798/M1(998.960,1488.465)  MN(N)                     Xu_ctrl_top/u_iram/g917332/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X52/X7235/M0(1518.240,586.175)  MN(N)                     Xu_ctrl_top/u_iram/g917410/M_u2_0-M_u4  MN(N) 
+         X52/X7235/M1(1517.520,586.175)  MN(N)                     Xu_ctrl_top/u_iram/g917410/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X53/X6687/M0(1393.920,515.615)  MN(N)                     Xu_ctrl_top/u_iram/g917548/M_u2_0-M_u4  MN(N) 
+         X53/X6687/M1(1393.200,515.615)  MN(N)                     Xu_ctrl_top/u_iram/g917548/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X53/X6686/M0(1376.000,539.825)  MN(N)                     Xu_ctrl_top/u_iram/g917433/M_u2_0-M_u4  MN(N) 
+         X53/X6686/M1(1375.280,539.825)  MN(N)                     Xu_ctrl_top/u_iram/g917433/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X53/X6685/M0(1375.440,539.135)  MN(N)                     Xu_ctrl_top/u_iram/g917315/M_u2_0-M_u4  MN(N) 
+         X53/X6685/M1(1374.720,539.135)  MN(N)                     Xu_ctrl_top/u_iram/g917315/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6824/M0(1037.460,742.975)  MN(N)                     Xu_ctrl_top/u_iram/g918603/MU3_0-M_u4  MN(N) 
+         X51/X6824/M1(1038.180,742.975)  MN(N)                     Xu_ctrl_top/u_iram/g918603/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X49/X7022/M1(1201.700,1072.255)  MN(N)                    Xu_ctrl_top/u_iram/g918688/MI11  MN(N) 
+         X49/X7022/M2(1202.340,1072.255)  MN(N)                    Xu_ctrl_top/u_iram/g918688/MI10  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6977/M0(390.660,1283.935)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87778/MU3_0-M_u4  MN(N) 
+         X47/X6977/M1(391.380,1283.935)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87778/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6823/M0(1038.300,719.455)  MN(N)                     Xu_ctrl_top/u_iram/g918604/MU3_0-M_u4  MN(N) 
+         X51/X6823/M1(1037.580,719.455)  MN(N)                     Xu_ctrl_top/u_iram/g918604/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X7211/M0(355.380,1354.495)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87902/MU3_0-M_u4  MN(N) 
+         X46/X7211/M1(356.100,1354.495)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87902/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X49/X6948/M0(1200.420,1072.945)  MN(N)                    Xu_ctrl_top/u_iram/g918687/MU3_0-M_u4  MN(N) 
+         X49/X6948/M1(1201.140,1072.945)  MN(N)                    Xu_ctrl_top/u_iram/g918687/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X52/X7234/M0(1414.880,618.225)  MN(N)                     Xu_ctrl_top/u_iram/g917435/M_u2_0-M_u4  MN(N) 
+         X52/X7234/M1(1415.600,618.225)  MN(N)                     Xu_ctrl_top/u_iram/g917435/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6978/M0(398.220,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87787/MU3_0-M_u4  MN(N) 
+         X47/X6978/M1(397.500,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87787/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6980/M0(423.980,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87786/MU3_0-M_u4  MN(N) 
+         X47/X6980/M1(423.260,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87786/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X7208/M0(337.460,1347.345)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87921/MU3_0-M_u4  MN(N) 
+         X46/X7208/M1(338.180,1347.345)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87921/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X52/X7233/M0(1408.160,618.225)  MN(N)                     Xu_ctrl_top/u_iram/g917308/M_u2_0-M_u4  MN(N) 
+         X52/X7233/M1(1408.880,618.225)  MN(N)                     Xu_ctrl_top/u_iram/g917308/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X52/X7232/M0(1377.120,586.175)  MN(N)                     Xu_ctrl_top/u_iram/g917443/M_u2_0-M_u4  MN(N) 
+         X52/X7232/M1(1376.400,586.175)  MN(N)                     Xu_ctrl_top/u_iram/g917443/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6153/M0(1556.560,1127.825)  MN(N)                    Xu_ctrl_top/u_iram/g917484/M_u2_0-M_u4  MN(N) 
+         X48/X6153/M1(1557.280,1127.825)  MN(N)                    Xu_ctrl_top/u_iram/g917484/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X7063/M1(1080.700,742.975)  MN(N)                     Xu_ctrl_top/u_iram/g918691/MI11  MN(N) 
+         X51/X7063/M2(1080.060,742.975)  MN(N)                     Xu_ctrl_top/u_iram/g918691/MI10  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X7207/M0(335.220,1331.665)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87918/MU3_0-M_u4  MN(N) 
+         X46/X7207/M1(335.940,1331.665)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87918/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6152/M0(1493.600,1182.015)  MN(N)                    Xu_ctrl_top/u_iram/g917531/M_u2_0-M_u4  MN(N) 
+         X48/X6152/M1(1492.880,1182.015)  MN(N)                    Xu_ctrl_top/u_iram/g917531/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6976/M0(336.340,1315.295)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87919/MU3_0-M_u4  MN(N) 
+         X47/X6976/M1(337.060,1315.295)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87919/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X47/X6979/M0(408.020,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87784/MU3_0-M_u4  MN(N) 
+         X47/X6979/M1(408.740,1284.625)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87784/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X7062/M1(1063.900,750.815)  MN(N)                     Xu_ctrl_top/u_iram/g918668/MI11  MN(N) 
+         X51/X7062/M2(1063.260,750.815)  MN(N)                     Xu_ctrl_top/u_iram/g918668/MI10  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6148/M0(1439.520,1096.465)  MN(N)                    Xu_ctrl_top/u_iram/g917665/M_u2_0-M_u4  MN(N) 
+         X48/X6148/M1(1440.240,1096.465)  MN(N)                    Xu_ctrl_top/u_iram/g917665/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6149/M0(1457.760,1119.295)  MN(N)                    Xu_ctrl_top/u_iram/g917542/M_u2_0-M_u4  MN(N) 
+         X48/X6149/M1(1457.040,1119.295)  MN(N)                    Xu_ctrl_top/u_iram/g917542/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X7210/M0(351.460,1346.655)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87904/MU3_0-M_u4  MN(N) 
+         X46/X7210/M1(352.180,1346.655)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87904/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6147/M0(1430.000,1103.615)  MN(N)                    Xu_ctrl_top/u_iram/g917656/M_u2_0-M_u4  MN(N) 
+         X48/X6147/M1(1430.720,1103.615)  MN(N)                    Xu_ctrl_top/u_iram/g917656/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X46/X7209/M0(337.460,1362.335)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87920/MU3_0-M_u4  MN(N) 
+         X46/X7209/M1(338.180,1362.335)  MN(N)                     Xu_ctrl_top/u_serv/rf_ram/g87920/MU3_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X45/X6801/M0(1489.120,1472.095)  MN(N)                    Xu_ctrl_top/u_iram/g917464/M_u2_0-M_u4  MN(N) 
+         X45/X6801/M1(1488.400,1472.095)  MN(N)                    Xu_ctrl_top/u_iram/g917464/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X45/X6799/M0(1039.440,1479.935)  MN(N)                    Xu_ctrl_top/u_iram/g917451/M_u2_0-M_u4  MN(N) 
+         X45/X6799/M1(1038.720,1479.935)  MN(N)                    Xu_ctrl_top/u_iram/g917451/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6585/M1(549.260,1189.855)  MN(N)                     Xu_ctrl_top/g7133/MI11  MN(N) 
+         X48/X6585/M2(548.620,1189.855)  MN(N)                     Xu_ctrl_top/g7133/MI10  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X51/X6588/M0(1388.320,829.215)  MN(N)                     Xu_ctrl_top/u_iram/g917498/M_u2_0-M_u4  MN(N) 
+         X51/X6588/M1(1387.600,829.215)  MN(N)                     Xu_ctrl_top/u_iram/g917498/M_u2_0-M_u3  MN(N) 
+
+       (_sdw2v)                                                  (_sdw2v)
+       Devices: 
+         X48/X6151/M0(1485.440,1158.495)  MN(N)                    Xu_ctrl_top/u_iram/g917661/M_u2_0-M_u4  MN(N) 
+         X48/X6151/M1(1486.160,1158.495)  MN(N)                    Xu_ctrl_top/u_iram/g917661/M_u2_0-M_u3  MN(N) 
+
+
+
+
+o Matched Mosfets Which Have Been Unequally Reduced:
+
+       X52/X7521/M2(1035.395,657.425)                            Xu_ctrl_top/u_iram/g918663/MU1_0-M_u4
+       X52/X7521/M3(1033.480,657.425)                            Xu_ctrl_top/u_iram/g918663/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918663/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918663/MU1_1-M_u4
+
+       X52/X7521/M1(1036.410,657.425)                            Xu_ctrl_top/u_iram/g918663/MU1_0-M_u3
+       X52/X7521/M4(1032.520,657.425)                            Xu_ctrl_top/u_iram/g918663/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918663/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918663/MU1_1-M_u3
+
+       X52/X7520/M2(1035.395,656.735)                            Xu_ctrl_top/u_iram/g918683/MU1_0-M_u4
+       X52/X7520/M3(1033.480,656.735)                            Xu_ctrl_top/u_iram/g918683/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918683/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918683/MU1_1-M_u4
+
+       X52/X7520/M1(1036.410,656.735)                            Xu_ctrl_top/u_iram/g918683/MU1_0-M_u3
+       X52/X7520/M4(1032.520,656.735)                            Xu_ctrl_top/u_iram/g918683/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918683/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/g918683/MU1_1-M_u3
+
+       X47/X6972/M2(456.285,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_0-M_u4
+       X47/X6972/M3(458.200,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_1-M_u4
+
+       X47/X6972/M1(455.270,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_0-M_u3
+       X47/X6972/M4(459.160,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88799/MU1_1-M_u3
+
+       X47/X6973/M2(465.315,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_0-M_u4
+       X47/X6973/M3(463.400,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_1-M_u4
+
+       X47/X6973/M1(466.330,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_0-M_u3
+       X47/X6973/M4(462.440,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89146/MU1_1-M_u3
+
+       X47/X6971/M2(449.075,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_0-M_u4
+       X47/X6971/M3(447.160,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_1-M_u4
+
+       X47/X6971/M1(450.090,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_0-M_u3
+       X47/X6971/M4(446.200,1236.895)                            Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g89147/MU1_1-M_u3
+
+       X47/X6974/M2(466.925,1245.425)                            Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_0-M_u4
+       X47/X6974/M3(468.840,1245.425)                            Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_1-M_u4
+
+       X47/X6974/M1(465.910,1245.425)                            Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_0-M_u3
+       X47/X6974/M4(469.800,1245.425)                            Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88843/MU1_1-M_u3
+
+       X47/X6975/M2(502.205,1268.255)                            Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_0-M_u4
+       X47/X6975/M3(504.120,1268.255)                            Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_1-M_u4
+
+       X47/X6975/M1(501.190,1268.255)                            Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_0-M_u3
+       X47/X6975/M4(505.080,1268.255)                            Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_serv/rf_ram/g88753/MU1_1-M_u3
+
+       X54/X7083/M2(223.395,375.185)                             Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_0-M_u4
+       X54/X7083/M3(221.480,375.185)                             Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_1-M_u4
+
+       X54/X7083/M1(224.410,375.185)                             Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_0-M_u3
+       X54/X7083/M4(220.520,375.185)                             Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_tx_i/ch[0].sso/async_fifo/MSYNC_1r1w/synth/g2/MU1_1-M_u3
+
+       X46/X7205/M1(547.670,1441.425)                            Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_0-M_u3
+       X46/X7205/M4(551.560,1441.425)                            Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_3-M_u3
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_2-M_u3
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_1-M_u3
+
+       X46/X7205/M2(548.685,1441.425)                            Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_0-M_u4
+       X46/X7205/M3(550.600,1441.425)                            Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_3-M_u4
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_2-M_u4
+       ** missing smashed mosfet **                              Xu_bsg_link_wrapper/link_rx_i/ch[0].downstream/genblk2.twofer/mem_1r1w/synth/g242__5107/MU1_1-M_u4
+
+       X52/X7855/M0(865.360,609.635)                             Xu_ctrl_top/u_iram/FE_OFC5657_iram_wdata_eff_7/M_u2_0
+       X52/X7855/M1(866.080,609.635)                             Xu_ctrl_top/u_iram/FE_OFC5657_iram_wdata_eff_7/M_u2_2
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/FE_OFC5657_iram_wdata_eff_7/M_u2_1
+
+       X52/X7856/M0(1102.800,610.445)                            Xu_ctrl_top/u_iram/FE_OFC1728_n_559/M_u2_0
+       X52/X7856/M1(1103.520,610.445)                            Xu_ctrl_top/u_iram/FE_OFC1728_n_559/M_u2_2
+       ** missing smashed mosfet **                              Xu_ctrl_top/u_iram/FE_OFC1728_n_559/M_u2_1
+
+
+
+**************************************************************************************************************
+                                         SUMMARY
+**************************************************************************************************************
+
+Total CPU Time:      5 sec
+Total Elapsed Time:  6 sec
