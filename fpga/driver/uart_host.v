@@ -64,7 +64,7 @@ module uart_host #(
         end else if (!start || loaded) begin
             tx <= 1'b1;
         end else if (wait_cnt < 20'd65535) begin
-            wait_cnt <= wait_cnt + 1'b1;                 // ~5 ms at 12.5 MHz
+            wait_cnt <= wait_cnt + 1'b1;                 // ~1.3 ms at 50 MHz
         end else if (bits_left == 0) begin
             if (gap != 2'd3) gap <= gap + 1'b1;          // let "word" update
             else begin

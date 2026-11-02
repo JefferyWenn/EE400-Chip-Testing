@@ -15,11 +15,12 @@
 //   SW1 up = send the firmware (once sending starts it finishes;
 //            SW0 / KEY0 restart clears it)
 //   KEY0 = restart (reset chip + link, load firmware again)
-//   LEDR0 system running, LEDR1 clock running, LEDR2 a frame arrived,
-//   LEDR3 every frame had all 256 pixels, LEDR4 firmware sent,
-//   LEDR5 chip ACK (0x06), LEDR6 BOOT OK, LEDR7 result packet came back,
-//   LEDR8 a KICKOFF was lost, LEDR9 a frame was short
-//   (LEDR2-3 and 7-9 stay on until reset)
+//   LEDs match the chip board's LEDs step by step:
+//   LEDR0 running, LEDR1 clock, LEDR2 firmware sent, LEDR3 BOOT OK received,
+//   LEDR4 I2C write seen (set by fullsys_top), LEDR5 every frame had 256 pixels,
+//   LEDR6 frame received, LEDR7 result sent, LEDR8 UART receiving,
+//   LEDR9 result packet received
+//   (LEDR6-8 blink with activity, the others stay on until reset)
 //   HEX5-4 = frames per second, HEX3-2 = strongest pixel in the last
 //   frame (00-FF), HEX1-0 = where it is (row, column, 0-F each)
 //   HEX values refresh twice per second (all numbers in hex)
@@ -59,10 +60,8 @@ module driver_top #(
     input  wire       scan_out     // PAD 47    (not used)
 );
 
-    // ---- Clock: 50 MHz / 4 = 12.5 MHz (chip UART is then 28800 baud) ----
-    reg [1:0] div = 2'd0;
-    always @(posedge CLOCK_50) div <= div + 1'b1;
-    wire clk = div[1];
+    // ---- Clock: the board's 50 MHz clock drives everything (chip UART = 115200 baud) ----
+    wire clk = CLOCK_50;
 
     // ---- Reset: SW0 up (hold) or KEY0 pressed (restart) ----
     reg [1:0] key_s = 2'b11;
@@ -163,19 +162,29 @@ module driver_top #(
     );
 
     // ---- LEDs ----
-    reg [22:0] blink = 0;
+    reg [24:0] blink = 0;
     always @(posedge clk) blink <= blink + 1'b1;
 
-    assign LEDR[0] = startup_done & ~restart;   // system running
-    assign LEDR[1] = blink[22];                 // clock running
-    assign LEDR[2] = any_frame;                 // a frame arrived
-    assign LEDR[3] = any_frame & ~any_short;    // every frame complete
-    assign LEDR[4] = fw_loaded;                 // firmware sent
-    assign LEDR[5] = ack_seen;                  // chip ACK 0x06
-    assign LEDR[6] = boot_ok;                   // BOOT OK
-    assign LEDR[7] = any_packet;                // result packet came back
-    assign LEDR[8] = any_kick;                  // a KICKOFF was lost
-    assign LEDR[9] = any_short;                 // a frame was short
+    // Activity lights: stay on ~0.17 s after each event (like the chip board)
+    reg [1:0]  utx_s = 2'b11;
+    reg [22:0] t_rx = 0, t_tx = 0, t_uart = 0;
+    always @(posedge clk) begin
+        utx_s  <= {utx_s[0], uart_tx};
+        t_rx   <= rx_valid              ? 23'h7FFFFF : (t_rx   != 0 ? t_rx   - 1'b1 : 23'd0);
+        t_tx   <= (tx_valid & tx_ready) ? 23'h7FFFFF : (t_tx   != 0 ? t_tx   - 1'b1 : 23'd0);
+        t_uart <= !utx_s[1]             ? 23'h7FFFFF : (t_uart != 0 ? t_uart - 1'b1 : 23'd0);
+    end
+
+    assign LEDR[0] = startup_done & ~restart;   // running
+    assign LEDR[1] = blink[24];                 // clock (about 1.5 blinks per second)
+    assign LEDR[2] = fw_loaded;                 // firmware sent
+    assign LEDR[3] = boot_ok;                   // BOOT OK received
+    assign LEDR[4] = 1'b0;                      // I2C write seen (fullsys_top fills it in)
+    assign LEDR[5] = any_frame & ~any_short;    // every frame had 256 pixels
+    assign LEDR[6] = (t_rx   != 0);             // frame received (link in)
+    assign LEDR[7] = (t_tx   != 0);             // result sent (link out)
+    assign LEDR[8] = (t_uart != 0);             // UART receiving
+    assign LEDR[9] = any_packet;                // result packet received
 
     // ---- HEX displays ----
     hex7seg h0 (.d(show_pos[3:0]),  .seg(HEX0));   // column

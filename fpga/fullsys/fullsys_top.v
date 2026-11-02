@@ -13,7 +13,7 @@
 //   KEY0   = restart
 //   HEX    = driver: fps (HEX5-4), strongest pixel (HEX3-2),
 //            its row and column (HEX1-0)
-//   Chip-side LED9 = chip's I2C write (0x5E, 0x7D) seen on the pins
+//   LED4 (both views) = chip's I2C write (0x5E, 0x7D) seen on the pins
 //
 // Loopback wire k (GPIO_0[k] <-> GPIO_1[k]):
 //   0-7 dn_data  8 dn_clk  9 dn_valid  10 dn_token  11 token_clk  12 up_clk
@@ -113,6 +113,8 @@ module fullsys_top (
     );
 
     // ================= LEDs =================
-    assign LEDR = SW[9] ? {i2c_ok, chip_led[8:0]} : drv_led;
+    // Both views use the same LED order; LED4 = I2C write seen on the glove pins
+    assign LEDR = SW[9] ? {chip_led[9:5], i2c_ok, chip_led[3:0]}
+                        : {drv_led[9:5],  i2c_ok, drv_led[3:0]};
 
 endmodule

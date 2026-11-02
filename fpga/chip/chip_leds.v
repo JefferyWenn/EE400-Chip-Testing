@@ -21,12 +21,12 @@ module chip_leds (
     end
 
     // ---- Activity LEDs: stay on ~0.1 s after each event ----
-    reg [20:0] t_adc = 0, t_up = 0, t_dn = 0, t_tx = 0;
+    reg [22:0] t_adc = 0, t_up = 0, t_dn = 0, t_tx = 0;   // ~0.17 s at 50 MHz
     always @(posedge clk) begin
-        t_adc <= !cs_s[1] ? 21'h1FFFFF : (t_adc != 0 ? t_adc - 1'b1 : 21'd0);
-        t_up  <=  up_s[1] ? 21'h1FFFFF : (t_up  != 0 ? t_up  - 1'b1 : 21'd0);
-        t_dn  <=  dn_s[1] ? 21'h1FFFFF : (t_dn  != 0 ? t_dn  - 1'b1 : 21'd0);
-        t_tx  <= !tx_s[1] ? 21'h1FFFFF : (t_tx  != 0 ? t_tx  - 1'b1 : 21'd0);
+        t_adc <= !cs_s[1] ? 23'h7FFFFF : (t_adc != 0 ? t_adc - 1'b1 : 23'd0);
+        t_up  <=  up_s[1] ? 23'h7FFFFF : (t_up  != 0 ? t_up  - 1'b1 : 23'd0);
+        t_dn  <=  dn_s[1] ? 23'h7FFFFF : (t_dn  != 0 ? t_dn  - 1'b1 : 23'd0);
+        t_tx  <= !tx_s[1] ? 23'h7FFFFF : (t_tx  != 0 ? t_tx  - 1'b1 : 23'd0);
     end
 
     // ---- Read the chip's UART bytes (434 clocks per bit, like the chip) ----
@@ -62,17 +62,18 @@ module chip_leds (
     end
 
     // ---- Clock blink ----
-    reg [22:0] blink = 0;
+    reg [24:0] blink = 0;
     always @(posedge clk) blink <= blink + 1'b1;
 
+    // Same order as the driver board's LEDs, step by step
     assign led[0] = ~reset;          // on = chip running
-    assign led[1] = blink[22];       // toggles = clock arriving
+    assign led[1] = blink[24];       // toggles = clock arriving
     assign led[2] = fw_loaded;       // firmware loaded (0x06 ACK)
-    assign led[3] = boot_ok;         // "BOOT OK"
-    assign led[4] = (t_adc != 0);    // ADC being read
-    assign led[5] = (t_up  != 0);    // BSG sending
-    assign led[6] = (t_dn  != 0);    // BSG receiving
-    assign led[7] = (t_tx  != 0);    // UART outputting
-    assign led[8] = packet;          // result packet 0xB0 sent
-    assign led[9] = 1'b0;
+    assign led[3] = boot_ok;         // "BOOT OK" sent
+    assign led[4] = 1'b0;            // I2C write seen (fullsys_top fills it in)
+    assign led[5] = (t_adc != 0);    // ADC being read
+    assign led[6] = (t_up  != 0);    // link sending (frame out)
+    assign led[7] = (t_dn  != 0);    // link receiving (result in)
+    assign led[8] = (t_tx  != 0);    // UART sending
+    assign led[9] = packet;          // result packet 0xB0 sent
 endmodule

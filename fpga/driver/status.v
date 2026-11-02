@@ -6,7 +6,7 @@
 //   - the HEX values refresh twice per second, and "freeze" holds them
 
 module status (
-    input  wire       clk,           // 12.5 MHz
+    input  wire       clk,           // 50 MHz
     input  wire       reset,
     input  wire       freeze,        // 1 = hold the HEX values
     input  wire [7:0] frames,        // running frame count (wraps at 256)
@@ -25,7 +25,7 @@ module status (
     output reg        any_kick   = 0,   // some KICKOFF was lost
     output reg        any_packet = 0    // a result packet came back
 );
-    localparam HALF_SEC = 23'd6_250_000;   // 0.5 s at 12.5 MHz
+    localparam HALF_SEC = 25'd25_000_000;  // 0.5 s at 50 MHz
 
     // ---- New frame? (frame counter changed) ----
     reg [7:0] frames_d = 0;
@@ -50,14 +50,14 @@ module status (
     end
 
     // ---- Half-second tick, and frames per second ----
-    reg [22:0] t = 0;
+    reg [24:0] t = 0;
     reg        second = 0;          // toggles every 0.5 s
     reg [7:0]  frames_at_sec = 0;   // frame count one second ago
     reg [7:0]  fps = 0;
     wire tick = (t == HALF_SEC - 1);
 
     always @(posedge clk) begin
-        t <= tick ? 23'd0 : t + 1'b1;
+        t <= tick ? 25'd0 : t + 1'b1;
         if (tick) begin
             second <= ~second;
             if (second) begin                       // every 1 s
