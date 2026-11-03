@@ -1,4 +1,4 @@
-# fullsys.qsf - full-system emulation on ONE DE1-SoC (driver + chip, loopback wires JP1 <-> JP2)
+# One DE1-SoC: test driver + chip, loopback wires JP1 <-> JP2
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
@@ -9,22 +9,22 @@ set_global_assignment -name SEARCH_PATH ../chip/rtl/basejump
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
 set_global_assignment -name SDC_FILE fullsys.sdc
 
-# ---- Source files ----
-set_global_assignment -name VERILOG_FILE fullsys_top.v
-set_global_assignment -name VERILOG_FILE i2c_monitor.v
+# source files
+set_global_assignment -name SYSTEMVERILOG_FILE fullsys_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE i2c_monitor.sv
 # driver
-set_global_assignment -name VERILOG_FILE ../driver/driver_top.v
-set_global_assignment -name VERILOG_FILE ../driver/reset_seq.v
-set_global_assignment -name VERILOG_FILE ../driver/uart_host.v
-set_global_assignment -name VERILOG_FILE ../driver/fake_adc.v
-set_global_assignment -name VERILOG_FILE ../driver/fake_cnn.v
-set_global_assignment -name VERILOG_FILE ../driver/hex7seg.v
-set_global_assignment -name VERILOG_FILE ../driver/status.v
-# chip board top + FPGA stand-ins for TSMC cells
-set_global_assignment -name VERILOG_FILE ../chip/chip_fpga_top.v
-set_global_assignment -name VERILOG_FILE ../chip/chip_leds.v
-set_global_assignment -name VERILOG_FILE ../common/tsmc_fpga_models.v
-# chip RTL (final Jun 6 version)
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/driver_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/reset_seq.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/uart_host.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/fake_adc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/fake_cnn.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/hex7seg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../driver/status.sv
+# chip wrapper and TSMC stand-ins
+set_global_assignment -name SYSTEMVERILOG_FILE ../chip/chip_fpga_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../chip/chip_leds.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../common/tsmc_fpga_models.sv
+# chip RTL (Jun 6, unchanged)
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/adc_8bit_buf.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/bsg_link_upstream_ctl.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/bsg_link_wrapper.sv
@@ -58,7 +58,7 @@ set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/serv_top.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/spi_master.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/uart_peripheral.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/design/uart_tx.v
-# BaseJump STL (ordered so each module comes before its users)
+# BaseJump (each module before the ones that use it)
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_launch_sync_sync.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_async_ptr_gray.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_scan.v
@@ -90,153 +90,81 @@ set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_link_sou
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_serial_in_parallel_out.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../chip/rtl/basejump/bsg_sync_sync.v
 
-# ---- JP1 = GPIO_0, JP2 = GPIO_1. Loopback k: GPIO_0[k] <-> GPIO_1[k] (same header pin) ----
-# header pin 1 on JP1: loop 0: dn_data[0]
+# JP1 = GPIO_0, JP2 = GPIO_1
 set_location_assignment PIN_AC18 -to GPIO_0[0]
-# header pin 1 on JP2: loop 0: dn_data[0]
 set_location_assignment PIN_AB17 -to GPIO_1[0]
-# header pin 2 on JP1: loop 1: dn_data[1]
 set_location_assignment PIN_Y17 -to GPIO_0[1]
-# header pin 2 on JP2: loop 1: dn_data[1]
 set_location_assignment PIN_AA21 -to GPIO_1[1]
-# header pin 3 on JP1: loop 2: dn_data[2]
 set_location_assignment PIN_AD17 -to GPIO_0[2]
-# header pin 3 on JP2: loop 2: dn_data[2]
 set_location_assignment PIN_AB21 -to GPIO_1[2]
-# header pin 4 on JP1: loop 3: dn_data[3]
 set_location_assignment PIN_Y18 -to GPIO_0[3]
-# header pin 4 on JP2: loop 3: dn_data[3]
 set_location_assignment PIN_AC23 -to GPIO_1[3]
-# header pin 5 on JP1: loop 4: dn_data[4]
 set_location_assignment PIN_AK16 -to GPIO_0[4]
-# header pin 5 on JP2: loop 4: dn_data[4]
 set_location_assignment PIN_AD24 -to GPIO_1[4]
-# header pin 6 on JP1: loop 5: dn_data[5]
 set_location_assignment PIN_AK18 -to GPIO_0[5]
-# header pin 6 on JP2: loop 5: dn_data[5]
 set_location_assignment PIN_AE23 -to GPIO_1[5]
-# header pin 7 on JP1: loop 6: dn_data[6]
 set_location_assignment PIN_AK19 -to GPIO_0[6]
-# header pin 7 on JP2: loop 6: dn_data[6]
 set_location_assignment PIN_AE24 -to GPIO_1[6]
-# header pin 8 on JP1: loop 7: dn_data[7]
 set_location_assignment PIN_AJ19 -to GPIO_0[7]
-# header pin 8 on JP2: loop 7: dn_data[7]
 set_location_assignment PIN_AF25 -to GPIO_1[7]
-# header pin 9 on JP1: loop 8: dn_clk
 set_location_assignment PIN_AJ17 -to GPIO_0[8]
-# header pin 9 on JP2: loop 8: dn_clk
 set_location_assignment PIN_AF26 -to GPIO_1[8]
-# header pin 10 on JP1: loop 9: dn_valid
 set_location_assignment PIN_AJ16 -to GPIO_0[9]
-# header pin 10 on JP2: loop 9: dn_valid
 set_location_assignment PIN_AG25 -to GPIO_1[9]
-# header pin 13 on JP1: loop 10: dn_token
 set_location_assignment PIN_AH18 -to GPIO_0[10]
-# header pin 13 on JP2: loop 10: dn_token
 set_location_assignment PIN_AG26 -to GPIO_1[10]
-# header pin 14 on JP1: loop 11: token_clk
 set_location_assignment PIN_AH17 -to GPIO_0[11]
-# header pin 14 on JP2: loop 11: token_clk
 set_location_assignment PIN_AH24 -to GPIO_1[11]
-# header pin 15 on JP1: loop 12: up_clk
 set_location_assignment PIN_AG16 -to GPIO_0[12]
-# header pin 15 on JP2: loop 12: up_clk
 set_location_assignment PIN_AH27 -to GPIO_1[12]
-# header pin 16 on JP1: loop 13: up_valid
 set_location_assignment PIN_AE16 -to GPIO_0[13]
-# header pin 16 on JP2: loop 13: up_valid
 set_location_assignment PIN_AJ27 -to GPIO_1[13]
-# header pin 17 on JP1: loop 14: up_data[0]
 set_location_assignment PIN_AF16 -to GPIO_0[14]
-# header pin 17 on JP2: loop 14: up_data[0]
 set_location_assignment PIN_AK29 -to GPIO_1[14]
-# header pin 18 on JP1: loop 15: up_data[1]
 set_location_assignment PIN_AG17 -to GPIO_0[15]
-# header pin 18 on JP2: loop 15: up_data[1]
 set_location_assignment PIN_AK28 -to GPIO_1[15]
-# header pin 19 on JP1: loop 16: up_data[2]
 set_location_assignment PIN_AA18 -to GPIO_0[16]
-# header pin 19 on JP2: loop 16: up_data[2]
 set_location_assignment PIN_AK27 -to GPIO_1[16]
-# header pin 20 on JP1: loop 17: up_data[3]
 set_location_assignment PIN_AA19 -to GPIO_0[17]
-# header pin 20 on JP2: loop 17: up_data[3]
 set_location_assignment PIN_AJ26 -to GPIO_1[17]
-# header pin 21 on JP1: loop 18: up_data[4]
 set_location_assignment PIN_AE17 -to GPIO_0[18]
-# header pin 21 on JP2: loop 18: up_data[4]
 set_location_assignment PIN_AK26 -to GPIO_1[18]
-# header pin 22 on JP1: loop 19: up_data[5]
 set_location_assignment PIN_AC20 -to GPIO_0[19]
-# header pin 22 on JP2: loop 19: up_data[5]
 set_location_assignment PIN_AH25 -to GPIO_1[19]
-# header pin 23 on JP1: loop 20: up_data[6]
 set_location_assignment PIN_AH19 -to GPIO_0[20]
-# header pin 23 on JP2: loop 20: up_data[6]
 set_location_assignment PIN_AJ25 -to GPIO_1[20]
-# header pin 24 on JP1: loop 21: up_data[7]
 set_location_assignment PIN_AJ20 -to GPIO_0[21]
-# header pin 24 on JP2: loop 21: up_data[7]
 set_location_assignment PIN_AJ24 -to GPIO_1[21]
-# header pin 25 on JP1: loop 22: core_clk
 set_location_assignment PIN_AH20 -to GPIO_0[22]
-# header pin 25 on JP2: loop 22: core_clk
 set_location_assignment PIN_AK24 -to GPIO_1[22]
-# header pin 26 on JP1: loop 23: hard_reset
 set_location_assignment PIN_AK21 -to GPIO_0[23]
-# header pin 26 on JP2: loop 23: hard_reset
 set_location_assignment PIN_AG23 -to GPIO_1[23]
-# header pin 27 on JP1: loop 24: uart_rx
 set_location_assignment PIN_AD19 -to GPIO_0[24]
-# header pin 27 on JP2: loop 24: uart_rx
 set_location_assignment PIN_AK23 -to GPIO_1[24]
-# header pin 28 on JP1: loop 25: uart_tx
 set_location_assignment PIN_AD20 -to GPIO_0[25]
-# header pin 28 on JP2: loop 25: uart_tx
 set_location_assignment PIN_AH23 -to GPIO_1[25]
-# header pin 31 on JP1: GLOVE ADC_SCLK
 set_location_assignment PIN_AE18 -to GPIO_0[26]
-# header pin 31 on JP2: GLOVE GND_SEL[0]
 set_location_assignment PIN_AK22 -to GPIO_1[26]
-# header pin 32 on JP1: GLOVE ADC_MISO
 set_location_assignment PIN_AE19 -to GPIO_0[27]
-# header pin 32 on JP2: GLOVE GND_SEL[1]
 set_location_assignment PIN_AJ22 -to GPIO_1[27]
-# header pin 33 on JP1: GLOVE ADC_CS_n
 set_location_assignment PIN_AF20 -to GPIO_0[28]
-# header pin 33 on JP2: GLOVE GND_SEL[2]
 set_location_assignment PIN_AH22 -to GPIO_1[28]
-# header pin 34 on JP1: (unused)
 set_location_assignment PIN_AF21 -to GPIO_0[29]
-# header pin 34 on JP2: GLOVE GND_SEL[3]
 set_location_assignment PIN_AG22 -to GPIO_1[29]
-# header pin 35 on JP1: (unused)
 set_location_assignment PIN_AF19 -to GPIO_0[30]
-# header pin 35 on JP2: GLOVE RD_SEL[0]
 set_location_assignment PIN_AF24 -to GPIO_1[30]
-# header pin 36 on JP1: (unused)
 set_location_assignment PIN_AG21 -to GPIO_0[31]
-# header pin 36 on JP2: GLOVE RD_SEL[1]
 set_location_assignment PIN_AF23 -to GPIO_1[31]
-# header pin 37 on JP1: (unused)
 set_location_assignment PIN_AF18 -to GPIO_0[32]
-# header pin 37 on JP2: GLOVE RD_SEL[2]
 set_location_assignment PIN_AE22 -to GPIO_1[32]
-# header pin 38 on JP1: (unused)
 set_location_assignment PIN_AG20 -to GPIO_0[33]
-# header pin 38 on JP2: GLOVE RD_SEL[3]
 set_location_assignment PIN_AD21 -to GPIO_1[33]
-# header pin 39 on JP1: (unused)
 set_location_assignment PIN_AG18 -to GPIO_0[34]
-# header pin 39 on JP2: GLOVE I2C_SCL
 set_location_assignment PIN_AA20 -to GPIO_1[34]
-# header pin 40 on JP1: (unused)
 set_location_assignment PIN_AJ21 -to GPIO_0[35]
-# header pin 40 on JP2: GLOVE I2C_SDA
 set_location_assignment PIN_AC22 -to GPIO_1[35]
 
-# ---- Board ----
+# board
 set_location_assignment PIN_AF14 -to CLOCK_50
 set_location_assignment PIN_AA14 -to KEY[0]
 set_location_assignment PIN_AA15 -to KEY[1]
@@ -305,7 +233,7 @@ set_location_assignment PIN_AB26 -to HEX5[4]
 set_location_assignment PIN_AA26 -to HEX5[5]
 set_location_assignment PIN_AA25 -to HEX5[6]
 
-# ---- All pins 3.3 V ----
+# all pins 3.3 V
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[*]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[*]
@@ -321,7 +249,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[*]
 
 
 set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
-# ---- Pull-ups: I2C lines to the glove (like resistors on a real board), ADC MISO ----
+# pull-ups on the glove I2C lines and ADC MISO
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to GPIO_1[34]
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to GPIO_1[35]
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to GPIO_0[27]

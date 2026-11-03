@@ -1,9 +1,8 @@
-// hex7seg.v
-// One hex digit -> DE1-SoC 7-segment display (segments are on when 0).
+// One hex digit on a 7-segment display (segments light up on 0).
 
 module hex7seg (
-    input  wire [3:0] d,
-    output reg  [6:0] seg
+    input  logic [3:0] d,
+    output logic [6:0] seg
 );
     always @(*) begin
         case (d)
@@ -22,7 +21,7 @@ module hex7seg (
             4'hC: seg = 7'b1000110;
             4'hD: seg = 7'b0100001;
             4'hE: seg = 7'b0000110;
-            default: seg = 7'b0001110;  // F
+            default: seg = 7'b0001110;
         endcase
     end
 endmodule

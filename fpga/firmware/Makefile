@@ -1,10 +1,8 @@
-# Makefile - build the control chip firmware
+# make          -> firmware.hex
+# make install  -> also copies it to ../driver/
+# make dis      -> disassembly
 #
-#   make          -> firmware.hex (one 32-bit word per line)
-#   make install  -> also copy it to ../driver/firmware.hex (built into the driver FPGA)
-#   make dis      -> firmware.dis (disassembly, to look at the code)
-#
-# Needs the xPack RISC-V compiler, e.g. in ~/tools:
+# Needs the RISC-V compiler on your PATH, e.g.
 #   export PATH=~/tools/xpack-riscv-none-elf-gcc-13.2.0-2/bin:$PATH
 
 CROSS   ?= riscv-none-elf
@@ -13,7 +11,7 @@ OBJCOPY  = $(CROSS)-objcopy
 OBJDUMP  = $(CROSS)-objdump
 SIZE     = $(CROSS)-size
 
-# rv32i only, small code (-Os) because the instruction RAM is only 1 KB
+# -Os because the instruction RAM is only 1 KB
 CFLAGS   = -march=rv32i -mabi=ilp32 -Os -std=c11 -nostdlib -ffreestanding -Wall
 LDFLAGS  = -march=rv32i -mabi=ilp32 -nostdlib -T link.ld
 

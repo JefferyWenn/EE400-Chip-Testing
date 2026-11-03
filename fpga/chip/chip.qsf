@@ -1,28 +1,28 @@
-# chip.qsf - Quartus settings for FPGA A (the "chip" board, DE1-SoC)
+# Chip board (two-board setup)
 
-# ---- Device and top level ----
+# device and top level
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY chip_fpga_top
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 
-# RTL uses SystemVerilog (always_ff, logic) also in .v files
+# SystemVerilog
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
-# Folder for `include files (bsg_defines.v, bsg_tag.vh)
+# include folder
 set_global_assignment -name SEARCH_PATH rtl/basejump
 
-# Unused FPGA pins: inputs, not driven
+# unused pins are inputs
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
 
-# ---- Timing constraints ----
+# timing
 set_global_assignment -name SDC_FILE chip.sdc
 
-# ---- Source files ----
-# Our files
-set_global_assignment -name VERILOG_FILE chip_fpga_top.v
-set_global_assignment -name VERILOG_FILE chip_leds.v
-set_global_assignment -name VERILOG_FILE ../common/tsmc_fpga_models.v
-# Chip RTL (copied from chip/, final Jun 6 version)
+# source files
+# chip wrapper and TSMC stand-ins
+set_global_assignment -name SYSTEMVERILOG_FILE chip_fpga_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE chip_leds.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../common/tsmc_fpga_models.sv
+# chip RTL (Jun 6, unchanged)
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/adc_8bit_buf.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/bsg_link_upstream_ctl.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/bsg_link_wrapper.sv
@@ -56,7 +56,7 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/serv_top.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/spi_master.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/uart_peripheral.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/design/uart_tx.v
-# BaseJump STL (bsg_link and helpers), ordered so each module comes before its users
+# BaseJump (each module before the ones that use it)
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_launch_sync_sync.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_async_ptr_gray.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_scan.v
@@ -88,96 +88,51 @@ set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_link_source_sync
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_serial_in_parallel_out.v
 set_global_assignment -name SYSTEMVERILOG_FILE rtl/basejump/bsg_sync_sync.v
 
-# ---- Pins (from DE1-SoC User Manual, Tables 3-9, 3-11, 3-14) ----
-# All header and LED pins are 3.3 V
-# Chip pads on the GPIO headers: PAD n = GPIO_0[n] (n<36) or GPIO_1[n-36]
-# Same physical pins on both boards, so a straight cable connects them.
-# PAD 30-35 are unused.
-# PAD  0  GPIO_0[0]   JP1
+# pins (DE1-SoC manual), all 3.3 V
+# PAD n = GPIO_0[n] for n < 36, else GPIO_1[n-36]
 set_location_assignment PIN_AC18 -to dn_data[0]
-# PAD  1  GPIO_0[1]   JP1
 set_location_assignment PIN_Y17 -to dn_data[1]
-# PAD  2  GPIO_0[2]   JP1
 set_location_assignment PIN_AD17 -to dn_data[2]
-# PAD  3  GPIO_0[3]   JP1
 set_location_assignment PIN_Y18 -to dn_data[3]
-# PAD  4  GPIO_0[4]   JP1
 set_location_assignment PIN_AK16 -to dn_data[4]
-# PAD  5  GPIO_0[5]   JP1
 set_location_assignment PIN_AK18 -to dn_data[5]
-# PAD  6  GPIO_0[6]   JP1
 set_location_assignment PIN_AK19 -to dn_data[6]
-# PAD  7  GPIO_0[7]   JP1
 set_location_assignment PIN_AJ19 -to dn_data[7]
-# PAD  8  GPIO_0[8]   JP1
 set_location_assignment PIN_AJ17 -to dn_clk
-# PAD  9  GPIO_0[9]   JP1
 set_location_assignment PIN_AJ16 -to dn_valid
-# PAD 10  GPIO_0[10]  JP1
 set_location_assignment PIN_AH18 -to dn_token
-# PAD 11  GPIO_0[11]  JP1
 set_location_assignment PIN_AH17 -to scan_en
-# PAD 12  GPIO_0[12]  JP1
 set_location_assignment PIN_AG16 -to token_clk
-# PAD 13  GPIO_0[13]  JP1
 set_location_assignment PIN_AE16 -to spi_sclk
-# PAD 14  GPIO_0[14]  JP1
 set_location_assignment PIN_AF16 -to up_valid
-# PAD 15  GPIO_0[15]  JP1
 set_location_assignment PIN_AG17 -to up_clk
-# PAD 16  GPIO_0[16]  JP1
 set_location_assignment PIN_AA18 -to up_data[6]
-# PAD 17  GPIO_0[17]  JP1
 set_location_assignment PIN_AA19 -to up_data[7]
-# PAD 18  GPIO_0[18]  JP1
 set_location_assignment PIN_AE17 -to up_data[4]
-# PAD 19  GPIO_0[19]  JP1
 set_location_assignment PIN_AC20 -to up_data[5]
-# PAD 20  GPIO_0[20]  JP1
 set_location_assignment PIN_AH19 -to up_data[2]
-# PAD 21  GPIO_0[21]  JP1
 set_location_assignment PIN_AJ20 -to up_data[3]
-# PAD 22  GPIO_0[22]  JP1
 set_location_assignment PIN_AH20 -to up_data[0]
-# PAD 23  GPIO_0[23]  JP1
 set_location_assignment PIN_AK21 -to up_data[1]
-# PAD 24  GPIO_0[24]  JP1
 set_location_assignment PIN_AD19 -to uart_rx
-# PAD 25  GPIO_0[25]  JP1
 set_location_assignment PIN_AD20 -to spi_miso
-# PAD 26  GPIO_0[26]  JP1
 set_location_assignment PIN_AE18 -to spi_cs_n
-# PAD 27  GPIO_0[27]  JP1
 set_location_assignment PIN_AE19 -to uart_tx
-# PAD 28  GPIO_0[28]  JP1
 set_location_assignment PIN_AF20 -to i2c_scl
-# PAD 29  GPIO_0[29]  JP1
 set_location_assignment PIN_AF21 -to i2c_sda
-# PAD 36  GPIO_1[0]   JP2
 set_location_assignment PIN_AB17 -to mux_row[0]
-# PAD 37  GPIO_1[1]   JP2
 set_location_assignment PIN_AA21 -to mux_row[1]
-# PAD 38  GPIO_1[2]   JP2
 set_location_assignment PIN_AB21 -to mux_row[2]
-# PAD 39  GPIO_1[3]   JP2
 set_location_assignment PIN_AC23 -to mux_row[3]
-# PAD 40  GPIO_1[4]   JP2
 set_location_assignment PIN_AD24 -to mux_col[0]
-# PAD 41  GPIO_1[5]   JP2
 set_location_assignment PIN_AE23 -to mux_col[1]
-# PAD 42  GPIO_1[6]   JP2
 set_location_assignment PIN_AE24 -to mux_col[2]
-# PAD 43  GPIO_1[7]   JP2
 set_location_assignment PIN_AF25 -to mux_col[3]
-# PAD 44  GPIO_1[8]   JP2
 set_location_assignment PIN_AF26 -to core_clk
-# PAD 45  GPIO_1[9]   JP2
 set_location_assignment PIN_AG25 -to hard_reset
-# PAD 46  GPIO_1[10]  JP2
 set_location_assignment PIN_AG26 -to scan_in
-# PAD 47  GPIO_1[11]  JP2
 set_location_assignment PIN_AH24 -to scan_out
-# Slide switches (SW0 = chip reset)
+# switches
 set_location_assignment PIN_AB12 -to SW[0]
 set_location_assignment PIN_AC12 -to SW[1]
 set_location_assignment PIN_AF9 -to SW[2]
@@ -188,7 +143,7 @@ set_location_assignment PIN_AE11 -to SW[6]
 set_location_assignment PIN_AC9 -to SW[7]
 set_location_assignment PIN_AD10 -to SW[8]
 set_location_assignment PIN_AE12 -to SW[9]
-# Red LEDs
+# LEDs
 set_location_assignment PIN_V16 -to LEDR[0]
 set_location_assignment PIN_W16 -to LEDR[1]
 set_location_assignment PIN_V17 -to LEDR[2]
@@ -200,7 +155,7 @@ set_location_assignment PIN_W20 -to LEDR[7]
 set_location_assignment PIN_W21 -to LEDR[8]
 set_location_assignment PIN_Y21 -to LEDR[9]
 
-# IO standard for every pin above
+# all 3.3 V
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to core_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to dn_data[*]
